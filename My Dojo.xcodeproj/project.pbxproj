@@ -8,20 +8,77 @@
 
 /* Begin PBXBuildFile section */
 		EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */; };
-		EE5D9D8C1DCA532D00B87D5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9D8B1DCA532D00B87D5A /* ViewController.swift */; };
-		EE5D9D8F1DCA532D00B87D5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D8D1DCA532D00B87D5A /* Main.storyboard */; };
-		EE5D9D911DCA532D00B87D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D901DCA532D00B87D5A /* Assets.xcassets */; };
-		EE5D9D941DCA532D00B87D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D921DCA532D00B87D5A /* LaunchScreen.storyboard */; };
+		EE5D9D9F1DCA548500B87D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */; };
+		EE5D9DA01DCA548500B87D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9C1DCA548500B87D5A /* LaunchScreen.storyboard */; };
+		EE5D9DA11DCA548500B87D5A /* StrategyBooks.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9D1DCA548500B87D5A /* StrategyBooks.plist */; };
+		EE5D9DA21DCA548500B87D5A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9E1DCA548500B87D5A /* Info.plist */; };
+		EE5D9DA51DCA54AB00B87D5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9DA41DCA54AB00B87D5A /* Main.storyboard */; };
+		EE5D9DC21DCA54B700B87D5A /* MyDojoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA61DCA54B700B87D5A /* MyDojoViewController.swift */; };
+		EE5D9DC31DCA54B700B87D5A /* TechniquesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA71DCA54B700B87D5A /* TechniquesTableViewController.swift */; };
+		EE5D9DC41DCA54B700B87D5A /* NewDojoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA81DCA54B700B87D5A /* NewDojoViewController.swift */; };
+		EE5D9DC51DCA54B700B87D5A /* SelectedDojoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA91DCA54B700B87D5A /* SelectedDojoViewController.swift */; };
+		EE5D9DC61DCA54B700B87D5A /* DojoSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAA1DCA54B700B87D5A /* DojoSearchTableViewController.swift */; };
+		EE5D9DC71DCA54B700B87D5A /* TechniqueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAB1DCA54B700B87D5A /* TechniqueDetailViewController.swift */; };
+		EE5D9DC81DCA54B700B87D5A /* NewTrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAC1DCA54B700B87D5A /* NewTrainingViewController.swift */; };
+		EE5D9DC91DCA54B700B87D5A /* StepCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAD1DCA54B700B87D5A /* StepCollectionViewCell.swift */; };
+		EE5D9DCA1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAE1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift */; };
+		EE5D9DCB1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DAF1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift */; };
+		EE5D9DCC1DCA54B700B87D5A /* Menu+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB01DCA54B700B87D5A /* Menu+CoreDataClass.swift */; };
+		EE5D9DCD1DCA54B700B87D5A /* Menu+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB11DCA54B700B87D5A /* Menu+CoreDataProperties.swift */; };
+		EE5D9DCE1DCA54B700B87D5A /* MenuItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB21DCA54B700B87D5A /* MenuItem+CoreDataClass.swift */; };
+		EE5D9DCF1DCA54B700B87D5A /* MenuItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB31DCA54B700B87D5A /* MenuItem+CoreDataProperties.swift */; };
+		EE5D9DD01DCA54B700B87D5A /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB41DCA54B700B87D5A /* Model.xcdatamodel */; };
+		EE5D9DD11DCA54B700B87D5A /* Dojo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB51DCA54B700B87D5A /* Dojo+CoreDataClass.swift */; };
+		EE5D9DD21DCA54B700B87D5A /* Dojo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB61DCA54B700B87D5A /* Dojo+CoreDataProperties.swift */; };
+		EE5D9DD31DCA54B700B87D5A /* Technique+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB71DCA54B700B87D5A /* Technique+CoreDataClass.swift */; };
+		EE5D9DD41DCA54B700B87D5A /* Technique+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB81DCA54B700B87D5A /* Technique+CoreDataProperties.swift */; };
+		EE5D9DD51DCA54B700B87D5A /* StrategyBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DB91DCA54B700B87D5A /* StrategyBook+CoreDataClass.swift */; };
+		EE5D9DD61DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBA1DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift */; };
+		EE5D9DD71DCA54B700B87D5A /* Chapter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBB1DCA54B700B87D5A /* Chapter+CoreDataClass.swift */; };
+		EE5D9DD81DCA54B700B87D5A /* Chapter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBC1DCA54B700B87D5A /* Chapter+CoreDataProperties.swift */; };
+		EE5D9DD91DCA54B700B87D5A /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBD1DCA54B700B87D5A /* CoreDataTableViewController.swift */; };
+		EE5D9DDA1DCA54B700B87D5A /* MenuItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBE1DCA54B700B87D5A /* MenuItemDelegate.swift */; };
+		EE5D9DDB1DCA54B700B87D5A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */; };
+		EE5D9DDC1DCA54B700B87D5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC01DCA54B700B87D5A /* Constants.swift */; };
+		EE5D9DDD1DCA54B700B87D5A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EE5D9D861DCA532D00B87D5A /* My Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EE5D9D8B1DCA532D00B87D5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EE5D9D8E1DCA532D00B87D5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EE5D9D901DCA532D00B87D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EE5D9D931DCA532D00B87D5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EE5D9D951DCA532D00B87D5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE5D9D9C1DCA548500B87D5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EE5D9D9D1DCA548500B87D5A /* StrategyBooks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StrategyBooks.plist; sourceTree = "<group>"; };
+		EE5D9D9E1DCA548500B87D5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE5D9DA41DCA54AB00B87D5A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EE5D9DA61DCA54B700B87D5A /* MyDojoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDojoViewController.swift; sourceTree = "<group>"; };
+		EE5D9DA71DCA54B700B87D5A /* TechniquesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechniquesTableViewController.swift; sourceTree = "<group>"; };
+		EE5D9DA81DCA54B700B87D5A /* NewDojoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDojoViewController.swift; sourceTree = "<group>"; };
+		EE5D9DA91DCA54B700B87D5A /* SelectedDojoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedDojoViewController.swift; sourceTree = "<group>"; };
+		EE5D9DAA1DCA54B700B87D5A /* DojoSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DojoSearchTableViewController.swift; sourceTree = "<group>"; };
+		EE5D9DAB1DCA54B700B87D5A /* TechniqueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechniqueDetailViewController.swift; sourceTree = "<group>"; };
+		EE5D9DAC1DCA54B700B87D5A /* NewTrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTrainingViewController.swift; sourceTree = "<group>"; };
+		EE5D9DAD1DCA54B700B87D5A /* StepCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE5D9DAE1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTileCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE5D9DAF1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallTileCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE5D9DB01DCA54B700B87D5A /* Menu+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Menu+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DB11DCA54B700B87D5A /* Menu+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Menu+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DB21DCA54B700B87D5A /* MenuItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MenuItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DB31DCA54B700B87D5A /* MenuItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MenuItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DB41DCA54B700B87D5A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EE5D9DB51DCA54B700B87D5A /* Dojo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dojo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DB61DCA54B700B87D5A /* Dojo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dojo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DB71DCA54B700B87D5A /* Technique+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technique+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DB81DCA54B700B87D5A /* Technique+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technique+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DB91DCA54B700B87D5A /* StrategyBook+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StrategyBook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DBA1DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StrategyBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DBB1DCA54B700B87D5A /* Chapter+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5D9DBC1DCA54B700B87D5A /* Chapter+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D9DBD1DCA54B700B87D5A /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		EE5D9DBE1DCA54B700B87D5A /* MenuItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemDelegate.swift; sourceTree = "<group>"; };
+		EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
+		EE5D9DC01DCA54B700B87D5A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +111,90 @@
 		EE5D9D881DCA532D00B87D5A /* My Dojo */ = {
 			isa = PBXGroup;
 			children = (
-				EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */,
-				EE5D9D8B1DCA532D00B87D5A /* ViewController.swift */,
-				EE5D9D8D1DCA532D00B87D5A /* Main.storyboard */,
-				EE5D9D901DCA532D00B87D5A /* Assets.xcassets */,
-				EE5D9D921DCA532D00B87D5A /* LaunchScreen.storyboard */,
-				EE5D9D951DCA532D00B87D5A /* Info.plist */,
+				EE5D9DE21DCA54F800B87D5A /* View Controllers */,
+				EE5D9DE11DCA54EE00B87D5A /* Views */,
+				EE5D9DE01DCA54DB00B87D5A /* Core Data */,
+				EE5D9DDF1DCA54CC00B87D5A /* Protocols */,
+				EE5D9DDE1DCA54C300B87D5A /* Utilities */,
+				EE5D9DA41DCA54AB00B87D5A /* Main.storyboard */,
+				EE5D9DA31DCA549100B87D5A /* Supporting files */,
 			);
 			path = "My Dojo";
+			sourceTree = "<group>";
+		};
+		EE5D9DA31DCA549100B87D5A /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */,
+				EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */,
+				EE5D9D9C1DCA548500B87D5A /* LaunchScreen.storyboard */,
+				EE5D9D9D1DCA548500B87D5A /* StrategyBooks.plist */,
+				EE5D9D9E1DCA548500B87D5A /* Info.plist */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		EE5D9DDE1DCA54C300B87D5A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9DC01DCA54B700B87D5A /* Constants.swift */,
+				EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		EE5D9DDF1DCA54CC00B87D5A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9DBE1DCA54B700B87D5A /* MenuItemDelegate.swift */,
+				EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		EE5D9DE01DCA54DB00B87D5A /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9DB01DCA54B700B87D5A /* Menu+CoreDataClass.swift */,
+				EE5D9DB11DCA54B700B87D5A /* Menu+CoreDataProperties.swift */,
+				EE5D9DB21DCA54B700B87D5A /* MenuItem+CoreDataClass.swift */,
+				EE5D9DB31DCA54B700B87D5A /* MenuItem+CoreDataProperties.swift */,
+				EE5D9DB41DCA54B700B87D5A /* Model.xcdatamodel */,
+				EE5D9DB51DCA54B700B87D5A /* Dojo+CoreDataClass.swift */,
+				EE5D9DB61DCA54B700B87D5A /* Dojo+CoreDataProperties.swift */,
+				EE5D9DB71DCA54B700B87D5A /* Technique+CoreDataClass.swift */,
+				EE5D9DB81DCA54B700B87D5A /* Technique+CoreDataProperties.swift */,
+				EE5D9DB91DCA54B700B87D5A /* StrategyBook+CoreDataClass.swift */,
+				EE5D9DBA1DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift */,
+				EE5D9DBB1DCA54B700B87D5A /* Chapter+CoreDataClass.swift */,
+				EE5D9DBC1DCA54B700B87D5A /* Chapter+CoreDataProperties.swift */,
+				EE5D9DBD1DCA54B700B87D5A /* CoreDataTableViewController.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		EE5D9DE11DCA54EE00B87D5A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9DAD1DCA54B700B87D5A /* StepCollectionViewCell.swift */,
+				EE5D9DAE1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift */,
+				EE5D9DAF1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		EE5D9DE21DCA54F800B87D5A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D9DA61DCA54B700B87D5A /* MyDojoViewController.swift */,
+				EE5D9DA71DCA54B700B87D5A /* TechniquesTableViewController.swift */,
+				EE5D9DA81DCA54B700B87D5A /* NewDojoViewController.swift */,
+				EE5D9DA91DCA54B700B87D5A /* SelectedDojoViewController.swift */,
+				EE5D9DAA1DCA54B700B87D5A /* DojoSearchTableViewController.swift */,
+				EE5D9DAB1DCA54B700B87D5A /* TechniqueDetailViewController.swift */,
+				EE5D9DAC1DCA54B700B87D5A /* NewTrainingViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,9 +257,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5D9D941DCA532D00B87D5A /* LaunchScreen.storyboard in Resources */,
-				EE5D9D911DCA532D00B87D5A /* Assets.xcassets in Resources */,
-				EE5D9D8F1DCA532D00B87D5A /* Main.storyboard in Resources */,
+				EE5D9DA21DCA548500B87D5A /* Info.plist in Resources */,
+				EE5D9DA51DCA54AB00B87D5A /* Main.storyboard in Resources */,
+				EE5D9DA11DCA548500B87D5A /* StrategyBooks.plist in Resources */,
+				EE5D9D9F1DCA548500B87D5A /* Assets.xcassets in Resources */,
+				EE5D9DA01DCA548500B87D5A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,31 +272,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5D9D8C1DCA532D00B87D5A /* ViewController.swift in Sources */,
+				EE5D9DCC1DCA54B700B87D5A /* Menu+CoreDataClass.swift in Sources */,
+				EE5D9DC21DCA54B700B87D5A /* MyDojoViewController.swift in Sources */,
+				EE5D9DC61DCA54B700B87D5A /* DojoSearchTableViewController.swift in Sources */,
+				EE5D9DD91DCA54B700B87D5A /* CoreDataTableViewController.swift in Sources */,
+				EE5D9DD21DCA54B700B87D5A /* Dojo+CoreDataProperties.swift in Sources */,
 				EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */,
+				EE5D9DDB1DCA54B700B87D5A /* MenuItemCell.swift in Sources */,
+				EE5D9DD61DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift in Sources */,
+				EE5D9DDD1DCA54B700B87D5A /* DatabaseManager.swift in Sources */,
+				EE5D9DCF1DCA54B700B87D5A /* MenuItem+CoreDataProperties.swift in Sources */,
+				EE5D9DDA1DCA54B700B87D5A /* MenuItemDelegate.swift in Sources */,
+				EE5D9DD41DCA54B700B87D5A /* Technique+CoreDataProperties.swift in Sources */,
+				EE5D9DDC1DCA54B700B87D5A /* Constants.swift in Sources */,
+				EE5D9DC51DCA54B700B87D5A /* SelectedDojoViewController.swift in Sources */,
+				EE5D9DD01DCA54B700B87D5A /* Model.xcdatamodel in Sources */,
+				EE5D9DD81DCA54B700B87D5A /* Chapter+CoreDataProperties.swift in Sources */,
+				EE5D9DCB1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift in Sources */,
+				EE5D9DCA1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift in Sources */,
+				EE5D9DD71DCA54B700B87D5A /* Chapter+CoreDataClass.swift in Sources */,
+				EE5D9DC31DCA54B700B87D5A /* TechniquesTableViewController.swift in Sources */,
+				EE5D9DC41DCA54B700B87D5A /* NewDojoViewController.swift in Sources */,
+				EE5D9DC71DCA54B700B87D5A /* TechniqueDetailViewController.swift in Sources */,
+				EE5D9DD11DCA54B700B87D5A /* Dojo+CoreDataClass.swift in Sources */,
+				EE5D9DCD1DCA54B700B87D5A /* Menu+CoreDataProperties.swift in Sources */,
+				EE5D9DC91DCA54B700B87D5A /* StepCollectionViewCell.swift in Sources */,
+				EE5D9DC81DCA54B700B87D5A /* NewTrainingViewController.swift in Sources */,
+				EE5D9DCE1DCA54B700B87D5A /* MenuItem+CoreDataClass.swift in Sources */,
+				EE5D9DD51DCA54B700B87D5A /* StrategyBook+CoreDataClass.swift in Sources */,
+				EE5D9DD31DCA54B700B87D5A /* Technique+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		EE5D9D8D1DCA532D00B87D5A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EE5D9D8E1DCA532D00B87D5A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EE5D9D921DCA532D00B87D5A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EE5D9D931DCA532D00B87D5A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EE5D9D961DCA532D00B87D5A /* Debug */ = {

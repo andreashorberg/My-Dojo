@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Chapter" representedClassName=".Chapter" syncable="YES">
+        <attribute name="japaneseName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="strategyBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StrategyBook" inverseName="chapters" inverseEntity="StrategyBook" syncable="YES"/>
+        <relationship name="techniques" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Technique" inverseName="chapter" inverseEntity="Technique" syncable="YES"/>
+    </entity>
+    <entity name="Dojo" representedClassName=".Dojo" syncable="YES">
+        <attribute name="addressDictionary" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mapImage" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="Menu" representedClassName=".Menu" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="menuItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MenuItem" inverseName="menu" inverseEntity="MenuItem" syncable="YES"/>
+    </entity>
+    <entity name="MenuItem" representedClassName=".MenuItem" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageAsset" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reusableIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="menuItems" inverseEntity="Menu" syncable="YES"/>
+    </entity>
+    <entity name="StrategyBook" representedClassName=".StrategyBook" syncable="YES">
+        <attribute name="japaneseName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chapters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Chapter" inverseName="strategyBook" inverseEntity="Chapter" syncable="YES"/>
+    </entity>
+    <entity name="Technique" representedClassName=".Technique" syncable="YES">
+        <attribute name="isAlonePractice" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isTogetherPractice" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isWarmup" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="japaneseName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chapter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chapter" inverseName="techniques" inverseEntity="Chapter" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Chapter" positionX="-72" positionY="-297" width="128" height="103"/>
+        <element name="Dojo" positionX="-146" positionY="-159" width="128" height="103"/>
+        <element name="Menu" positionX="-524" positionY="-117" width="128" height="88"/>
+        <element name="MenuItem" positionX="-360" positionY="-115" width="128" height="150"/>
+        <element name="StrategyBook" positionX="-335" positionY="-367" width="128" height="88"/>
+        <element name="Technique" positionX="162" positionY="-297" width="128" height="133"/>
+    </elements>
+</model>
