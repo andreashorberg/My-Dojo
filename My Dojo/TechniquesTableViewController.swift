@@ -253,7 +253,7 @@ class TechniquesTableViewController: CoreDataTableViewController {
     
     // MARK: TableView
     
-    fileprivate var cellAccessoryType = UITableViewCellAccessoryType.detailButton
+    fileprivate var cellAccessoryType = UITableViewCellAccessoryType.disclosureIndicator
     
     fileprivate func setupTableView() {
         tableView.sectionIndexBackgroundColor = UIColor.clear // the right side index for sections covers the searchbar, this is a decent trade off
