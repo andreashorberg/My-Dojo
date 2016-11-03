@@ -36,6 +36,9 @@ class NewTrainingViewController: UIViewController {
         }
         if let destinationvc = segue.destination as? TechniquesTableViewController {
             destinationvc.isSelectionMode = true
+            if !selectedTechniques.isEmpty {
+                destinationvc.selectedTechniques = selectedTechniques
+            }
         }
     }
     
@@ -84,6 +87,7 @@ class NewTrainingViewController: UIViewController {
         dateTextField.resignFirstResponder()
     }
     
+    @IBOutlet weak var tableView: UITableView!
     // MARK: Techniques
     var selectedTechniques = [Technique]()
 }
@@ -95,6 +99,23 @@ extension NewTrainingViewController {
         if let source = sender.source as? TechniquesTableViewController {
             selectedTechniques = source.selectedTechniques
             debugPrint(selectedTechniques)
+            tableView.reloadData()
         }
+    }
+}
+
+extension NewTrainingViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newTrainingTechniqueCell, for: indexPath) as! NewTrainingTechniqueTableViewCell
+        
+        let technique = selectedTechniques[indexPath.row]
+        
+        cell.techniqueLabel.text = technique.japaneseName
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedTechniques.count
     }
 }

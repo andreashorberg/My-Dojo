@@ -41,6 +41,7 @@
 		EE5D9DDB1DCA54B700B87D5A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */; };
 		EE5D9DDC1DCA54B700B87D5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC01DCA54B700B87D5A /* Constants.swift */; };
 		EE5D9DDD1DCA54B700B87D5A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */; };
+		EE5D9DE41DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		EE5D9DC01DCA54B700B87D5A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTrainingTechniqueTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				EE5D9DAD1DCA54B700B87D5A /* StepCollectionViewCell.swift */,
 				EE5D9DAE1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift */,
 				EE5D9DAF1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift */,
+				EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE5D9DCC1DCA54B700B87D5A /* Menu+CoreDataClass.swift in Sources */,
+				EE5D9DE41DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift in Sources */,
 				EE5D9DC21DCA54B700B87D5A /* MyDojoViewController.swift in Sources */,
 				EE5D9DC61DCA54B700B87D5A /* DojoSearchTableViewController.swift in Sources */,
 				EE5D9DD91DCA54B700B87D5A /* CoreDataTableViewController.swift in Sources */,

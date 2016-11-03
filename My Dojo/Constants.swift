@@ -43,6 +43,8 @@ public struct Constants {
     static let largeTile = "Large Tile"
     static let smallTile = "Small Tile"
     
+    static let newTrainingTechniqueCell = "New Training Technique Cell"
+    
     // MARK: View tags
     static let dojoImageView = 100
     

@@ -60,11 +60,24 @@ class TechniquesTableViewController: CoreDataTableViewController {
         addSearchController()
         if isSelectionMode {
             addToolbar()
+            
             doneButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(doneButtonAction))
             doneButton?.isEnabled = false
             navigationItem.rightBarButtonItem = doneButton
+            
+            removeAllButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(removeSelection))
+            removeAllButton?.isEnabled = isTechniqueSelected
         }
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !selectedTechniques.isEmpty {
+            numberOfSelectedTechniques = selectedTechniques.count
+            navigationItem.leftBarButtonItem = removeAllButton
+            isEditingSelection = true
+        }
     }
     
     // MARK: Search
@@ -74,12 +87,15 @@ class TechniquesTableViewController: CoreDataTableViewController {
     fileprivate var filteredTechniques = [Technique]()
     
     fileprivate func addSearchController() {
+        
         searchController = UISearchController(searchResultsController: nil)
         searchController!.searchResultsUpdater = self
         searchController!.dimsBackgroundDuringPresentation = false
         
         searchController?.searchBar.barStyle = .black
         searchController?.searchBar.tintColor = .orange
+        
+        searchController?.loadViewIfNeeded()
         
         definesPresentationContext = true //make sure the searchbar doesn't remain on screen when switching views in the middle of searching
         tableView.tableHeaderView = searchController!.searchBar
@@ -96,13 +112,22 @@ class TechniquesTableViewController: CoreDataTableViewController {
     
     public var selectedTechniques = [Technique]()
     fileprivate var doneButton: UIBarButtonItem?
-    
+    fileprivate var removeAllButton: UIBarButtonItem?
+    fileprivate var isEditingSelection: Bool = false
+
     fileprivate var _numberOfSelectedTechniques = 0
     fileprivate var numberOfSelectedTechniques: Int {
         get { return _numberOfSelectedTechniques }
         set {
             _numberOfSelectedTechniques = newValue
-            if _numberOfSelectedTechniques == 0 { isTechniqueSelected = false }
+            if _numberOfSelectedTechniques == 0 {
+                //navigationItem.leftBarButtonItem = nil
+                isTechniqueSelected = false
+            } else if _numberOfSelectedTechniques > 0 && !isTechniqueSelected {
+                isTechniqueSelected = true
+            } else {
+                navigationItem.leftBarButtonItem = removeAllButton
+            }
         }
     }
     
@@ -112,23 +137,37 @@ class TechniquesTableViewController: CoreDataTableViewController {
         set {
             _isTechniqueSelected = newValue
             clearAllButton?.isEnabled = newValue
+            if newValue == false && isEditingSelection {
+                removeAllButton?.isEnabled = true
+            } else if newValue == false && !isEditingSelection {
+                navigationItem.leftBarButtonItem = nil
+            } else if newValue == true {
+                if navigationItem.leftBarButtonItem == nil {
+                    navigationItem.leftBarButtonItem = removeAllButton
+                }
+                removeAllButton?.isEnabled = newValue
+            }
             doneButton?.isEnabled = newValue
         }
     }
 
     fileprivate var clearAllButton: UIBarButtonItem?
+    
     fileprivate func addToolbar() {
         var toolbarFrame = CGRect.zero
         toolbarFrame.size.height = Constants.minButtonHeight
-        toolbar = UIToolbar(frame: toolbarFrame)
         
+        toolbar = UIToolbar(frame: toolbarFrame)
         toolbar?.barStyle = .black
         toolbar?.tintColor = .orange
         
-        
         clearAllButton = UIBarButtonItem(title: "Clear all", style: .plain, target: self, action: #selector(clearSelection))
         clearAllButton?.isEnabled = isTechniqueSelected
+    
+        
+        
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
         toolbar!.setItems([space, clearAllButton!], animated: false)
     }
     
@@ -145,6 +184,19 @@ class TechniquesTableViewController: CoreDataTableViewController {
         isTechniqueSelected = false
         selectedTechniques.removeAll()
         tableView.reloadData()
+    }
+    
+    func removeSelection() {
+        let alert = UIAlertController(title: "Remove techniques", message: "This action will remove all your selected techniques, are you sure?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Yes", style: .destructive, handler: { [unowned self] _ in
+            self.clearSelection()
+            self.doneButtonAction()
+        })
+        let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
     func doneButtonAction() {
@@ -181,9 +233,14 @@ class TechniquesTableViewController: CoreDataTableViewController {
             backItem.title = "Back"
             self.navigationItem.backBarButtonItem = backItem
             
-            guard let technique = fetchedResultsController?.object(at: self.tableView.indexPath(for: cell)!) as? Technique else { return }
-            
-            techdetailsvc.technique = technique
+            if isSearchActive {
+                let technique = filteredTechniques[self.tableView.indexPath(for: cell)!.row]
+                techdetailsvc.technique = technique
+            } else if let technique = fetchedResultsController?.object(at: self.tableView.indexPath(for: cell)!) as? Technique {
+                techdetailsvc.technique = technique
+            } else {
+                return
+            }
         }
     }
     
@@ -230,6 +287,7 @@ class TechniquesTableViewController: CoreDataTableViewController {
         cell.detailTextLabel?.text = strategyBook
         if cellTechnique.isSelected {
             cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         } else {
             cell.accessoryType = cellAccessoryType
         }
@@ -283,12 +341,14 @@ class TechniquesTableViewController: CoreDataTableViewController {
         if let cell = tableView.cellForRow(at: indexPath), isSelectionMode {
             cell.accessoryType = .checkmark
             let selectedTechnique: Technique = isSearchActive ? filteredTechniques[indexPath.row] : (fetchedResultsController?.object(at: indexPath) as! Technique)
-            selectedTechnique.isSelected = true
             
             if !isTechniqueSelected { isTechniqueSelected = true }
-            numberOfSelectedTechniques += 1
             
-            selectedTechniques.append(selectedTechnique)
+            if !selectedTechnique.isSelected {
+                selectedTechnique.isSelected = true
+                numberOfSelectedTechniques += 1
+                selectedTechniques.append(selectedTechnique)
+            }
         }
     }
     
