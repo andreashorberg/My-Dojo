@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */; };
+		EE5453491DCBBF8700021177 /* Training+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */; };
 		EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */; };
 		EE5D9D9F1DCA548500B87D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */; };
 		EE5D9DA01DCA548500B87D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9C1DCA548500B87D5A /* LaunchScreen.storyboard */; };
 		EE5D9DA11DCA548500B87D5A /* StrategyBooks.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9D1DCA548500B87D5A /* StrategyBooks.plist */; };
-		EE5D9DA21DCA548500B87D5A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9E1DCA548500B87D5A /* Info.plist */; };
 		EE5D9DA51DCA54AB00B87D5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9DA41DCA54AB00B87D5A /* Main.storyboard */; };
 		EE5D9DC21DCA54B700B87D5A /* MyDojoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA61DCA54B700B87D5A /* MyDojoViewController.swift */; };
 		EE5D9DC31DCA54B700B87D5A /* TechniquesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DA71DCA54B700B87D5A /* TechniquesTableViewController.swift */; };
@@ -42,9 +43,12 @@
 		EE5D9DDC1DCA54B700B87D5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC01DCA54B700B87D5A /* Constants.swift */; };
 		EE5D9DDD1DCA54B700B87D5A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */; };
 		EE5D9DE41DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */; };
+		EE5D9DE61DCB69B800B87D5A /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EE5D9D861DCA532D00B87D5A /* My Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 		EE5D9DC01DCA54B700B87D5A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTrainingTechniqueTableViewCell.swift; sourceTree = "<group>"; };
+		EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +146,7 @@
 			children = (
 				EE5D9DC01DCA54B700B87D5A /* Constants.swift */,
 				EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */,
+				EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 		EE5D9DE01DCA54DB00B87D5A /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */,
+				EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */,
 				EE5D9DB01DCA54B700B87D5A /* Menu+CoreDataClass.swift */,
 				EE5D9DB11DCA54B700B87D5A /* Menu+CoreDataProperties.swift */,
 				EE5D9DB21DCA54B700B87D5A /* MenuItem+CoreDataClass.swift */,
@@ -260,7 +268,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5D9DA21DCA548500B87D5A /* Info.plist in Resources */,
 				EE5D9DA51DCA54AB00B87D5A /* Main.storyboard in Resources */,
 				EE5D9DA11DCA548500B87D5A /* StrategyBooks.plist in Resources */,
 				EE5D9D9F1DCA548500B87D5A /* Assets.xcassets in Resources */,
@@ -279,9 +286,11 @@
 				EE5D9DE41DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift in Sources */,
 				EE5D9DC21DCA54B700B87D5A /* MyDojoViewController.swift in Sources */,
 				EE5D9DC61DCA54B700B87D5A /* DojoSearchTableViewController.swift in Sources */,
+				EE5D9DE61DCB69B800B87D5A /* DateTextField.swift in Sources */,
 				EE5D9DD91DCA54B700B87D5A /* CoreDataTableViewController.swift in Sources */,
 				EE5D9DD21DCA54B700B87D5A /* Dojo+CoreDataProperties.swift in Sources */,
 				EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */,
+				EE5453491DCBBF8700021177 /* Training+CoreDataProperties.swift in Sources */,
 				EE5D9DDB1DCA54B700B87D5A /* MenuItemCell.swift in Sources */,
 				EE5D9DD61DCA54B700B87D5A /* StrategyBook+CoreDataProperties.swift in Sources */,
 				EE5D9DDD1DCA54B700B87D5A /* DatabaseManager.swift in Sources */,
@@ -297,6 +306,7 @@
 				EE5D9DD71DCA54B700B87D5A /* Chapter+CoreDataClass.swift in Sources */,
 				EE5D9DC31DCA54B700B87D5A /* TechniquesTableViewController.swift in Sources */,
 				EE5D9DC41DCA54B700B87D5A /* NewDojoViewController.swift in Sources */,
+				EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */,
 				EE5D9DC71DCA54B700B87D5A /* TechniqueDetailViewController.swift in Sources */,
 				EE5D9DD11DCA54B700B87D5A /* Dojo+CoreDataClass.swift in Sources */,
 				EE5D9DCD1DCA54B700B87D5A /* Menu+CoreDataProperties.swift in Sources */,
@@ -449,6 +459,7 @@
 				EE5D9D9A1DCA532D00B87D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

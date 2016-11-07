@@ -9,22 +9,47 @@
 import UIKit
 
 class NewTrainingViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.timeZone = NSTimeZone.local
+        
+        let date = Date()
+        
+        dateTextField.text = dateFormatter.string(for: date)
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     
+    @IBOutlet weak var addTrainingButton: UIButton!
+    
+    @IBAction func addNewtrainingToProgress(_ sender: UIButton) {
+        DatabaseManager.context.perform { [unowned self] in
+            guard let training: Training = Training.createTraining(at: self.dateTextField.text!, journal: self.journalTextField.text!, inManagedObjectContext: DatabaseManager.context) else { return }
+            do {
+                for technique in self.selectedTechniques {
+                    training.addToTechniques(technique)
+                }
+                
+                try DatabaseManager.context.save()
+                debugPrint(training)
+                self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
+            } catch {
+                debugPrint("Error saving training: \(error)")
+            }
+        }
+    }
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -42,8 +67,6 @@ class NewTrainingViewController: UIViewController {
         }
     }
     
-
-    
     // MARK: - DatePicker
     @IBOutlet weak var dateTextField: UITextField!
     var datePicker: UIDatePicker?
@@ -51,14 +74,22 @@ class NewTrainingViewController: UIViewController {
     var datePickerToolbar: UIToolbar?
     
     func setupDatePicker(_ sender: UITextField) {
+        
         datePicker = UIDatePicker()
         datePicker!.datePickerMode = .date
         datePicker!.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        
+        datePicker!.backgroundColor = Constants.backgroundColor
+        datePicker!.setValue(Constants.systemColor, forKey: "textColor")
         
         var toolBarFrame = CGRect.zero
         toolBarFrame.size.height = Constants.minButtonHeight
         
         datePickerToolbar = UIToolbar(frame: toolBarFrame)
+        datePickerToolbar?.barStyle = .black
+        datePickerToolbar?.backgroundColor = Constants.backgroundColor
+        datePickerToolbar?.tintColor = Constants.systemColor
+        
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDone))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
@@ -75,7 +106,7 @@ class NewTrainingViewController: UIViewController {
         dateFormatter!.dateStyle = .medium
         dateFormatter!.timeStyle = .none
         
-        dateTextField.text = dateFormatter!.string(from: datePicker!.date)
+        //dateTextField.text = dateFormatter!.string(from: datePicker!.date)
     }
     
     func datePickerValueChanged(sender: UIDatePicker) {
@@ -88,17 +119,24 @@ class NewTrainingViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    
     // MARK: Techniques
     var selectedTechniques = [Technique]()
+    
+    @IBAction func addTechniques(_ sender: Any) {
+        performSegue(withIdentifier: Constants.addTechniquesSegue, sender: self)
+    }
+    
+    // MARK: Journal
+    @IBOutlet weak var journalTextField: UITextView!
 }
 
-// Unwind segue to get back to main menu from different places
+// Unwind segue to get back to here from different places
 extension NewTrainingViewController {
     @IBAction func unwindToNewTraining(sender: UIStoryboardSegue)
     {
         if let source = sender.source as? TechniquesTableViewController {
             selectedTechniques = source.selectedTechniques
-            debugPrint(selectedTechniques)
             tableView.reloadData()
         }
     }
@@ -117,5 +155,9 @@ extension NewTrainingViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedTechniques.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 }

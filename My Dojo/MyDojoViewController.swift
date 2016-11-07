@@ -31,7 +31,7 @@ class MyDojoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = Constants.viewTitle
-//        DatabaseManager.populateDatabase(with: "StrategyBooks")
+        //        DatabaseManager.populateDatabase(with: "StrategyBooks")
         DatabaseManager.read(propertyList: "StrategyBooks")
         addNotificationObservers()
         
@@ -72,18 +72,10 @@ class MyDojoViewController: UIViewController {
         if let navcon = destinationvc as? UINavigationController {
             destinationvc = navcon.visibleViewController ?? destinationvc
         }
-        if let techtvc = destinationvc as? TechniquesTableViewController {
-            if let identifier = segue.identifier {
-//                techtvc.strategyBook = identifier
-                if let sendingButton = sender as? UIButton {
-                    techtvc.navigationItem.title = sendingButton.currentTitle
-                }
-            }
-        } else if let sdvc = destinationvc as? SelectedDojoViewController {
+        destinationvc.navigationItem.title = segue.identifier
+        if let sdvc = destinationvc as? SelectedDojoViewController {
             sdvc.navigationItem.title = dojo?.mapItem?.placemark.name
             sdvc.myDojo = dojo
-        } else if let ndvc = destinationvc as? NewDojoViewController {
-            
         }
     }
 }
@@ -149,10 +141,10 @@ extension MyDojoViewController {
             if let menu = notification.userInfo?["menu"] as? Menu {
                 self.mainMenu = menu
             }
-                
+            
         }
         
-        let plistReadObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .plistReadNotification, object: nil, queue: OperationQueue.main){ [unowned self] notification in
+        let plistReadObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .plistReadNotification, object: nil, queue: OperationQueue.main){ notification in
             if let plist = notification.userInfo?["plist"] {
                 DatabaseManager.populateDatabase(with: plist)
             }
@@ -227,7 +219,7 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size: CGSize = CGSize.zero
-
+        
         if collectionView == menuCollectionView {
             let menuItem = mainMenu?.getMenuItem(at: indexPath.row)
             switch menuItem!.reusableIdentifier! {
@@ -240,7 +232,7 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
         }
         return size
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
@@ -250,10 +242,10 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
     }
     
     // Add this back after fixing the view
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        let pageNumber = ceil(scrollView.contentOffset.x / scrollView.frame.size.width)
-//        pageControl.currentPage = Int(pageNumber)
-//    }
+    //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    //        let pageNumber = ceil(scrollView.contentOffset.x / scrollView.frame.size.width)
+    //        pageControl.currentPage = Int(pageNumber)
+    //    }
 }
 
 extension MyDojoViewController: MenuItemDelegate {

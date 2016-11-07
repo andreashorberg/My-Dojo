@@ -200,7 +200,7 @@ class TechniquesTableViewController: CoreDataTableViewController {
     }
     
     func doneButtonAction() {
-        performSegue(withIdentifier: Constants.selectTechniques, sender: self)
+        performSegue(withIdentifier: Constants.selectTechniquesSegue, sender: self)
     }
     
     // MARK: Database statistics

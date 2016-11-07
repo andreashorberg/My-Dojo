@@ -2,12 +2,13 @@
 //  Technique+CoreDataProperties.swift
 //  My Dojo
 //
-//  Created by Andreas Hörberg on 2016-10-21.
+//  Created by Andreas Hörberg on 2016-11-03.
 //  Copyright © 2016 Andreas Hörberg. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension Technique {
 
@@ -21,5 +22,23 @@ extension Technique {
     @NSManaged public var japaneseName: String?
     @NSManaged public var unique: String?
     @NSManaged public var chapter: Chapter?
+    @NSManaged public var trainings: NSSet?
+
+}
+
+// MARK: Generated accessors for trainings
+extension Technique {
+
+    @objc(addTrainingsObject:)
+    @NSManaged public func addToTrainings(_ value: Training)
+
+    @objc(removeTrainingsObject:)
+    @NSManaged public func removeFromTrainings(_ value: Training)
+
+    @objc(addTrainings:)
+    @NSManaged public func addToTrainings(_ values: NSSet)
+
+    @objc(removeTrainings:)
+    @NSManaged public func removeFromTrainings(_ values: NSSet)
 
 }
