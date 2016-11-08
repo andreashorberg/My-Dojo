@@ -55,7 +55,6 @@ class TechniquesTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        printDatabaseStatistics()
         
         addSearchController()
         if isSelectionMode {
@@ -201,19 +200,6 @@ class TechniquesTableViewController: CoreDataTableViewController {
     
     func doneButtonAction() {
         performSegue(withIdentifier: Constants.selectTechniquesSegue, sender: self)
-    }
-    
-    // MARK: Database statistics
-    
-    fileprivate func printDatabaseStatistics() {
-        managedObjectContext?.perform {
-            
-            //a more efficient way to count objects ...
-            if let techniqueCount = try? self.managedObjectContext!.count(for: NSFetchRequest<NSFetchRequestResult>(entityName:"Technique")){
-                print ("\(techniqueCount) Techniques")
-            }
-            
-        }
     }
     
     

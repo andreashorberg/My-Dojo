@@ -61,6 +61,8 @@ class MyDojoViewController: UIViewController {
         }
         
         view.bringSubview(toFront: spinnerPageControl)
+        
+        StatisticsManager.sharedInstance.printStatistics()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

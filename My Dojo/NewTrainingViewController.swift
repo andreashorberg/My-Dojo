@@ -36,12 +36,14 @@ class NewTrainingViewController: UIViewController {
         DatabaseManager.context.perform { [unowned self] in
             guard let training: Training = Training.createTraining(at: self.dateTextField.text!, journal: self.journalTextField.text!, inManagedObjectContext: DatabaseManager.context) else { return }
             do {
-                for technique in self.selectedTechniques {
+                for technique in self.selectedTechniques! {
                     training.addToTechniques(technique)
                 }
                 
                 try DatabaseManager.context.save()
-                debugPrint(training)
+                
+                self.selectedTechniques = nil
+                
                 self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
             } catch {
                 debugPrint("Error saving training: \(error)")
@@ -61,9 +63,13 @@ class NewTrainingViewController: UIViewController {
         }
         if let destinationvc = segue.destination as? TechniquesTableViewController {
             destinationvc.isSelectionMode = true
-            if !selectedTechniques.isEmpty {
-                destinationvc.selectedTechniques = selectedTechniques
-            }
+            if !selectedTechniques!.isEmpty {
+                destinationvc.selectedTechniques = selectedTechniques!
+            } /*else {
+                if !destinationvc.selectedTechniques.isEmpty {
+                    destinationvc.clearSelection()
+                }
+            }*/
         }
     }
     
@@ -121,7 +127,7 @@ class NewTrainingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Techniques
-    var selectedTechniques = [Technique]()
+    var selectedTechniques: [Technique]? = [Technique]()
     
     @IBAction func addTechniques(_ sender: Any) {
         performSegue(withIdentifier: Constants.addTechniquesSegue, sender: self)
@@ -137,6 +143,7 @@ extension NewTrainingViewController {
     {
         if let source = sender.source as? TechniquesTableViewController {
             selectedTechniques = source.selectedTechniques
+            source.clearSelection()
             tableView.reloadData()
         }
     }
@@ -146,15 +153,15 @@ extension NewTrainingViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newTrainingTechniqueCell, for: indexPath) as! NewTrainingTechniqueTableViewCell
         
-        let technique = selectedTechniques[indexPath.row]
+        let technique = selectedTechniques?[indexPath.row]
         
-        cell.techniqueLabel.text = technique.japaneseName
+        cell.techniqueLabel.text = technique?.japaneseName
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedTechniques.count
+        return selectedTechniques != nil ? selectedTechniques!.count : 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
