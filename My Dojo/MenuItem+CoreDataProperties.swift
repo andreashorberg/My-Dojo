@@ -12,8 +12,8 @@ import CoreData
 
 extension MenuItem {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<MenuItem> {
-        return NSFetchRequest<MenuItem>(entityName: "MenuItem");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<MenuItem>(entityName: "MenuItem") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var imageAsset: String?

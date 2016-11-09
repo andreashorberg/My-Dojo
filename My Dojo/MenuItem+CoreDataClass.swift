@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class MenuItem: NSManagedObject {
+open class MenuItem: NSManagedObject {
     class func menuItem(with title: String, id: String, action: String, imageAsset: String, sortOrder: Int, reusableIdentifier: String, for menu: Menu, inManagedObjectContext context: NSManagedObjectContext) -> MenuItem?
     {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MenuItem")

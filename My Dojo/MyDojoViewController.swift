@@ -11,7 +11,11 @@ import UIKit
 class MyDojoViewController: UIViewController {
     
     var notificationObservers: [NSObjectProtocol?] = []
-    let notificationCenter = NotificationCenter.default
+    var notificationCenter: NotificationCenter {
+        get {
+            return NotificationCenter.default
+        }
+    }
     
     fileprivate var dojoButtonCell: LargeTileCollectionViewCell?
     
@@ -39,9 +43,7 @@ class MyDojoViewController: UIViewController {
     }
     
     deinit {
-        if !removeNotificationObservers() {
-            debugPrint("Couldn't remove observers")
-        }
+        removeNotificationObservers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,7 +86,7 @@ class MyDojoViewController: UIViewController {
 
 // Unwind segue to get back to main menu from different places
 extension MyDojoViewController {
-    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
+    @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
     {
         if let source = sender.source as? SelectedDojoViewController {
             self.dojo = source.myDojo
@@ -102,9 +104,9 @@ extension MyDojoViewController {
     }
 }
 
-//Notifications
-extension MyDojoViewController {
-    fileprivate func addNotificationObservers()
+// MARK: - Notifications
+extension MyDojoViewController: ListensForNotifications {
+    internal func addNotificationObservers()
     {
         debugPrint("Add notification observers")
         let dojoRemovedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .dojoRemovedNotification, object: nil, queue: OperationQueue.main) {
@@ -157,7 +159,7 @@ extension MyDojoViewController {
         notificationObservers.append(plistReadObserver!)
     }
     
-    fileprivate func removeNotificationObservers() -> Bool
+    internal func removeNotificationObservers()
     {
         if !notificationObservers.isEmpty {
             for observer in notificationObservers {
@@ -165,11 +167,12 @@ extension MyDojoViewController {
             }
             notificationObservers.removeAll()
             debugPrint("Remove notification observers")
-            return true
         }
-        return false
+        debugPrint("Notification observers are already removed")
     }
 }
+
+// MARK: - CollectionView
 
 extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -249,6 +252,7 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
     //        pageControl.currentPage = Int(pageNumber)
     //    }
 }
+// MARK: - MenuItem
 
 extension MyDojoViewController: MenuItemDelegate {
     func menuButtonAction(with action: String) {

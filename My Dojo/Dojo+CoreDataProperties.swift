@@ -11,8 +11,8 @@ import CoreData
 
 extension Dojo {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Dojo> {
-        return NSFetchRequest<Dojo>(entityName: "Dojo");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Dojo>(entityName: "Dojo") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var addressDictionary: NSObject?

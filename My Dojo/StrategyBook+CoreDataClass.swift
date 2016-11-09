@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class StrategyBook: NSManagedObject {
+open class StrategyBook: NSManagedObject {
 
     class func strategyBook(withName name: String, andId id: String, inManagedObjectContext context: NSManagedObjectContext) -> StrategyBook?
     {

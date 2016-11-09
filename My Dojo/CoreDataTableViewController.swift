@@ -76,9 +76,10 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        
         switch type {
-        case .insert: tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-        case .delete: tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+        case .insert: tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete: tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
         default: break
         }
     }

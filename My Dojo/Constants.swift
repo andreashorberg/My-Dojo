@@ -58,7 +58,7 @@ public struct Constants {
     static let actionColor = UIColor(red: scalar(255), green: scalar(127), blue: scalar(0), alpha: 1)
     static let accentColor = UIColor(red: scalar(212), green: scalar(198), blue: scalar(133), alpha: 1)
     
-    private static func scalar(_ value: Int) -> CGFloat {
+    fileprivate static func scalar(_ value: Int) -> CGFloat {
         return CGFloat(value)/255
     }
 }
@@ -68,4 +68,5 @@ extension Notification.Name
     static let getDojoNotification = Notification.Name("getDojoNotification")
     static let getMainMenuNotification = Notification.Name("getMainMenuNotification")
     static let plistReadNotification = Notification.Name("plistReadNotification")
+    static let newTrainingCreatedNotification = Notification.Name("newTrainingCreatedNotification")
 }

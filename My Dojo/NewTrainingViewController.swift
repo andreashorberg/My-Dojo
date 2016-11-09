@@ -10,18 +10,41 @@ import UIKit
 
 class NewTrainingViewController: UIViewController {
     
+    var notificationObservers: [NSObjectProtocol?] = []
+    var notificationCenter: NotificationCenter {
+        get {
+            return NotificationCenter.default
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
-        dateFormatter.timeZone = NSTimeZone.local
+        dateFormatter.timeZone = TimeZone.current
         
         let date = Date()
         
         dateTextField.text = dateFormatter.string(for: date)
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        addNotificationObservers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotificationObservers()
+    }
+    
+    deinit {
+        removeNotificationObservers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,9 +65,6 @@ class NewTrainingViewController: UIViewController {
                 
                 try DatabaseManager.context.save()
                 
-                self.selectedTechniques = nil
-                
-                self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
             } catch {
                 debugPrint("Error saving training: \(error)")
             }
@@ -115,7 +135,7 @@ class NewTrainingViewController: UIViewController {
         //dateTextField.text = dateFormatter!.string(from: datePicker!.date)
     }
     
-    func datePickerValueChanged(sender: UIDatePicker) {
+    func datePickerValueChanged(_ sender: UIDatePicker) {
         
         dateTextField.text = dateFormatter!.string(from: sender.date)
     }
@@ -139,7 +159,7 @@ class NewTrainingViewController: UIViewController {
 
 // Unwind segue to get back to here from different places
 extension NewTrainingViewController {
-    @IBAction func unwindToNewTraining(sender: UIStoryboardSegue)
+    @IBAction func unwindToNewTraining(_ sender: UIStoryboardSegue)
     {
         if let source = sender.source as? TechniquesTableViewController {
             selectedTechniques = source.selectedTechniques
@@ -166,5 +186,44 @@ extension NewTrainingViewController : UITableViewDelegate, UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+}
+
+// MARK: - Notifications
+
+extension NewTrainingViewController: ListensForNotifications {
+    
+    
+    internal func addNotificationObservers() {
+        
+        let trainingCreatedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .newTrainingCreatedNotification, object: nil, queue: OperationQueue.main) { [unowned self] notification in
+            
+            self.selectedTechniques = nil
+            self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
+            if let training = notification.object as? Training {
+                self.updateStatistics(with: training)
+            }
+        }
+        
+        notificationObservers.append(trainingCreatedObserver)
+    }
+    
+    internal func removeNotificationObservers() {
+        
+        if !notificationObservers.isEmpty {
+            for observer in notificationObservers {
+                notificationCenter.removeObserver(observer!)
+            }
+            notificationObservers.removeAll()
+            debugPrint("Remove notification observers")
+        }
+        debugPrint("Notification observers are already removed")
+    }
+}
+// MARK: Statistics
+
+extension NewTrainingViewController {
+    open func updateStatistics(with training: Training) {
+        
     }
 }

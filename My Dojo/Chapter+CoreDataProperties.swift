@@ -11,8 +11,8 @@ import CoreData
 
 extension Chapter {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Chapter> {
-        return NSFetchRequest<Chapter>(entityName: "Chapter");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Chapter>(entityName: "Chapter") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var japaneseName: String?

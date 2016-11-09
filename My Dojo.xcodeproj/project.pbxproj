@@ -11,6 +11,7 @@
 		EE0A2CBF1DD2118100F3EFEE /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A2CBE1DD2118100F3EFEE /* StatisticsManager.swift */; };
 		EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */; };
 		EE5453491DCBBF8700021177 /* Training+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */; };
+		EE5D637F1DD38DCC001E0E63 /* ListensForNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D637E1DD38DCC001E0E63 /* ListensForNotifications.swift */; };
 		EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */; };
 		EE5D9D9F1DCA548500B87D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */; };
 		EE5D9DA01DCA548500B87D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE5D9D9C1DCA548500B87D5A /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		EE0A2CBE1DD2118100F3EFEE /* StatisticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
 		EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EE5D637E1DD38DCC001E0E63 /* ListensForNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListensForNotifications.swift; sourceTree = "<group>"; };
 		EE5D9D861DCA532D00B87D5A /* My Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5D9D891DCA532D00B87D5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE5D9D9B1DCA548500B87D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				EE5D9DBE1DCA54B700B87D5A /* MenuItemDelegate.swift */,
 				EE5D9DBF1DCA54B700B87D5A /* MenuItemCell.swift */,
+				EE5D637E1DD38DCC001E0E63 /* ListensForNotifications.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 					EE5D9D851DCA532D00B87D5A = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 8257XXTA6S;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -311,6 +315,7 @@
 				EE5D9DCA1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift in Sources */,
 				EE5D9DD71DCA54B700B87D5A /* Chapter+CoreDataClass.swift in Sources */,
 				EE5D9DC31DCA54B700B87D5A /* TechniquesTableViewController.swift in Sources */,
+				EE5D637F1DD38DCC001E0E63 /* ListensForNotifications.swift in Sources */,
 				EE5D9DC41DCA54B700B87D5A /* NewDojoViewController.swift in Sources */,
 				EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */,
 				EE0A2CBD1DD1D25800F3EFEE /* MainSpinnerViewCell.swift in Sources */,

@@ -12,14 +12,14 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var button: UIButton!
     
-    public var mapImage: UIImage?
-    public var isDojoSelected = false
-    public var delegate: MenuItemDelegate?
-    public var action: String?
+    open var mapImage: UIImage?
+    open var isDojoSelected = false
+    open var delegate: MenuItemDelegate?
+    open var action: String?
     
-    private var dojoImageView: UIImageView?
-    private var myDojoButtonBlur: UIVisualEffectView?
-    private var getDojoObserver: NSObjectProtocol?
+    fileprivate var dojoImageView: UIImageView?
+    fileprivate var myDojoButtonBlur: UIVisualEffectView?
+    fileprivate var getDojoObserver: NSObjectProtocol?
     
     
     override func draw(_ rect: CGRect) {

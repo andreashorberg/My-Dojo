@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 import MapKit
 
-public class Dojo: NSManagedObject {
+open class Dojo: NSManagedObject {
     
-    private var placemark: MKPlacemark? {
+    fileprivate var placemark: MKPlacemark? {
         get {
             return MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: addressDictionary as! [String : Any]?)
         }
@@ -49,7 +49,7 @@ public class Dojo: NSManagedObject {
         return nil
     }
     
-    public func remove() -> Bool {
+    open func remove() -> Bool {
         
         DatabaseManager.context.delete(self)
         do {

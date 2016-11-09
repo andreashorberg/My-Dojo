@@ -100,7 +100,7 @@ class TechniquesTableViewController: CoreDataTableViewController {
         tableView.tableHeaderView = searchController!.searchBar
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredTechniques = (fetchedResultsController?.fetchedObjects as? [Technique])!.filter { technique in
             return technique.japaneseName!.lowercased().contains(searchText.lowercased())
         }
@@ -109,7 +109,7 @@ class TechniquesTableViewController: CoreDataTableViewController {
     
     // MARK: Selection
     
-    public var selectedTechniques = [Technique]()
+    open var selectedTechniques = [Technique]()
     fileprivate var doneButton: UIBarButtonItem?
     fileprivate var removeAllButton: UIBarButtonItem?
     fileprivate var isEditingSelection: Bool = false
@@ -360,6 +360,6 @@ class TechniquesTableViewController: CoreDataTableViewController {
 
 extension TechniquesTableViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }

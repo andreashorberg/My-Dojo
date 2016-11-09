@@ -12,8 +12,8 @@ import CoreData
 
 extension Technique {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Technique> {
-        return NSFetchRequest<Technique>(entityName: "Technique");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Technique>(entityName: "Technique") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var isAlonePractice: Bool

@@ -11,8 +11,8 @@ import CoreData
 
 extension Menu {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Menu> {
-        return NSFetchRequest<Menu>(entityName: "Menu");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Menu>(entityName: "Menu") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var name: String?

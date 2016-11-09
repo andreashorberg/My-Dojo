@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-public class Menu: NSManagedObject {
+open class Menu: NSManagedObject {
     class func menu(withName name: String, andId id: String, inManagedObjectContext context: NSManagedObjectContext) -> Menu?
     {
         let request = NSFetchRequest<Menu>(entityName: "Menu")
@@ -29,7 +29,7 @@ public class Menu: NSManagedObject {
         return nil
     }
     
-    public func getMenuItem(at index: Int) -> MenuItem?
+    open func getMenuItem(at index: Int) -> MenuItem?
     {
         if let menuItems = self.menuItems?.allObjects as? [MenuItem] {
             for item: MenuItem in menuItems {

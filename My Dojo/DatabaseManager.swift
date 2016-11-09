@@ -18,7 +18,7 @@ class DatabaseManager {
         }
     }
     
-    public static func populateDatabase(with propertyList: Any?) {
+    open static func populateDatabase(with propertyList: Any?) {
         let plist = propertyList
         
         context.perform {
@@ -64,7 +64,7 @@ class DatabaseManager {
                             default: break
                             }
                         }
-                        if let newChapter = Chapter.chapterWithName(name: name!, andId: unique!, for: strategyBooks[strategyBook!], inManagedObjectContext: context) {
+                        if let newChapter = Chapter.chapterWithName(name!, andId: unique!, for: strategyBooks[strategyBook!], inManagedObjectContext: context) {
                             chapters.insert(newChapter, at: Int(unique!)!)
                         }
                     }
@@ -84,7 +84,7 @@ class DatabaseManager {
                             default: break
                             }
                         }
-                        guard let _ = Technique.techniqueWithName(name: name!, andId: unique!, for: chapters[chapter!], inManagedObjectContext: context) else { return }
+                        guard let _ = Technique.techniqueWith(name: name!, andId: unique!, for: chapters[chapter!], inManagedObjectContext: context) else { return }
                     }
                     break
                 default: debugPrint("I dont know"); break
@@ -100,12 +100,12 @@ class DatabaseManager {
         }
     }
     
-    public static func populateDatabase(with jsonUrl: URL, and context:NSManagedObjectContext)
+    open static func populateDatabase(with jsonUrl: URL, and context:NSManagedObjectContext)
     {
         var 🛠_TODO_IMPLEMENT: Any?
     }
     
-    public static func read(propertyList name: String) {
+    open static func read(propertyList name: String) {
         
         var data: Data?
         var plist: Any?

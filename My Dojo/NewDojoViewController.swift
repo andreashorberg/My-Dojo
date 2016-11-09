@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark)
+    func dropPinZoomIn(_ placemark: MKPlacemark)
 }
 
 class NewDojoViewController: UIViewController {
@@ -116,7 +116,7 @@ extension NewDojoViewController: CLLocationManagerDelegate {
 }
 
 extension NewDojoViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark) {
+    func dropPinZoomIn(_ placemark: MKPlacemark) {
         // cache the pin
         selectedPin = placemark
         

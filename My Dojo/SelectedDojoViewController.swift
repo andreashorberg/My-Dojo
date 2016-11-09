@@ -10,8 +10,8 @@ import UIKit
 import MapKit
 
 class SelectedDojoViewController: UIViewController {
-    public var myDojo: Dojo?
-    private var areYouSure: UIAlertController?
+    open var myDojo: Dojo?
+    fileprivate var areYouSure: UIAlertController?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!

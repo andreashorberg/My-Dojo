@@ -12,11 +12,11 @@ import CoreData
 
 extension Training {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Training> {
-        return NSFetchRequest<Training>(entityName: "Training");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Training>(entityName: "Training") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
-    @NSManaged public var date: NSDate?
+    @NSManaged public var date: Date?
     @NSManaged public var journal: String?
     @NSManaged public var unique: String?
     @NSManaged public var techniques: NSSet?

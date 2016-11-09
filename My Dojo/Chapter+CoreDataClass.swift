@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 
-public class Chapter: NSManagedObject {
-    class func chapterWithName(name: String, andId id: String, for strategyBook: StrategyBook, inManagedObjectContext context: NSManagedObjectContext) -> Chapter?
+open class Chapter: NSManagedObject {
+    class func chapterWithName(_ name: String, andId id: String, for strategyBook: StrategyBook, inManagedObjectContext context: NSManagedObjectContext) -> Chapter?
     {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
         request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
