@@ -54,13 +54,17 @@ class MyDojoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if dojo == nil {
-            DatabaseManager.getDojo(from: self)
-        }
-        
         if mainMenu == nil {
             DatabaseManager.getMainMenu(from: self)
         }
+    
+        if dojo == nil {
+            DatabaseManager.getDojo(from: self)
+        }/* else if dojo != nil && !dojoButtonCell!.isDojoSelected {
+            dojoButtonCell?.mapImage = dojo?.mapImage as! UIImage?
+            dojoButtonCell?.isDojoSelected = true
+            menuCollectionView.reloadData()//
+        }*/
         
         view.bringSubview(toFront: spinnerPageControl)
         
@@ -90,7 +94,8 @@ extension MyDojoViewController {
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
     {
         if let source = sender.source as? SelectedDojoViewController {
-            self.dojo = source.myDojo
+            //self.dojo = source.myDojo //maybe this should be changed to nil? this should only occur when going back from changing dojo
+            self.dojo = nil //maybe this should be changed to nil? this should only occur when going back from changing dojo
         }
     }
 }
@@ -113,6 +118,8 @@ extension MyDojoViewController: ListensForNotifications {
         let dojoRemovedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .dojoRemovedNotification, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
             self.dojo = nil
+            self.dojoButtonCell?.mapImage = nil
+            self.dojoButtonCell?.setNeedsDisplay()
         }
         
         // Look for notification initiated by DatabaseManager restore(sender:), triggered by button press "My Dojo" or possibly any other source in the future
@@ -123,6 +130,7 @@ extension MyDojoViewController: ListensForNotifications {
             case is MyDojoViewController:
                 if let dojo = notification.userInfo?["dojo"] as? Dojo {
                     self.dojo = dojo
+                    //self.dojoButtonCell?.setNeedsDisplay()
                 }
                 break
             case is UIButton:

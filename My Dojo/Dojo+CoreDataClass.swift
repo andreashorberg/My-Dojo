@@ -49,20 +49,18 @@ open class Dojo: NSManagedObject {
         return nil
     }
     
-    open func remove() -> Bool {
+    open func remove() {
         
         DatabaseManager.context.delete(self)
         do {
             try DatabaseManager.context.save()
         } catch {
             debugPrint(error)
-            return false
+            return
         }
         
         let notification = Notification(name: .dojoRemovedNotification, object: self, userInfo: nil)
         NotificationCenter.default.post(notification)
-        
-        return true
     }
     
 }

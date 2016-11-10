@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class SelectedDojoViewController: UIViewController {
+
     open var myDojo: Dojo?
     fileprivate var areYouSure: UIAlertController?
     
@@ -20,14 +21,7 @@ class SelectedDojoViewController: UIViewController {
         areYouSure = UIAlertController.init(title: Constants.areYouSureTitle, message: Constants.areYouSureMessage, preferredStyle: .alert)
         
         let okAction = UIAlertAction.init(title: Constants.okTitle, style: .default) { Void in
-            switch self.myDojo!.remove() {
-            case true:
-                var 🛠_TODO_IMPLEMENT_maybe_try_unwind_segue_here: Any?
-                break
-            case false:
-                var 🛠_TODO_IMPLEMENT: Any?
-                break
-            }
+            self.myDojo!.remove()
         }
         
         let cancelAction = UIAlertAction.init(title: Constants.cancelTitle, style: .cancel) { [unowned self] _ in
@@ -42,11 +36,16 @@ class SelectedDojoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        addNotificationObservers()
         DispatchQueue.main.async { [unowned self] in
             self.addressLabel.text = self.myDojo?.mapItem?.placemark.title
             self.prepareMapView()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeNotificationObservers()
     }
     
     fileprivate func prepareMapView()
@@ -70,6 +69,14 @@ class SelectedDojoViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         
         mapView.selectAnnotation(annotation, animated: true)
+    }
+    
+    // MARK: - Notifications
+    var notificationObservers: [NSObjectProtocol?] = []
+    var notificationCenter: NotificationCenter {
+        get {
+            return NotificationCenter.default
+        }
     }
 }
 
@@ -95,6 +102,26 @@ extension SelectedDojoViewController : MKMapViewDelegate {
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             mapItem.openInMaps(launchOptions: launchOptions)
         }
+    }
+}
+
+extension SelectedDojoViewController : ListensForNotifications {
+    func addNotificationObservers() {
+        let dojoRemovedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .dojoRemovedNotification, object: nil, queue: OperationQueue.main) { [unowned self] _ in
+            self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
+        }
+        notificationObservers.append(dojoRemovedObserver)
+    }
+    
+    func removeNotificationObservers() {
+        if !notificationObservers.isEmpty {
+            for observer in notificationObservers {
+                notificationCenter.removeObserver(observer!)
+            }
+            notificationObservers.removeAll()
+            debugPrint("Remove notification observers")
+        }
+        debugPrint("Notification observers are already removed")
     }
 }
 

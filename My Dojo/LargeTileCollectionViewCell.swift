@@ -27,7 +27,9 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
         if getDojoObserver == nil {
             getDojoObserver = NotificationCenter.default.addObserver(forName: .getDojoNotification, object: nil, queue: OperationQueue.main) { [unowned self] notification in
                 if let dojo = notification.userInfo?["dojo"] as? Dojo {
-                    self.mapImage = dojo.mapImage as! UIImage?
+                    DispatchQueue.main.async { [unowned self] in
+                        self.mapImage = dojo.mapImage as! UIImage?
+                    }
                     self.isDojoSelected = true
                 } else {
                     self.isDojoSelected = false
@@ -35,7 +37,6 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
                         self.removeButtonEffects()
                     }
                 }
-                self.setNeedsDisplay()
             }
         }
 
@@ -78,6 +79,8 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
 
         self.button.viewWithTag(100)?.removeFromSuperview()
         self.myDojoButtonBlur?.isHidden = true
+        self.setNeedsDisplay()
+
     }
     
     func blur(button: UIButton, show: Bool, duration: Double)
