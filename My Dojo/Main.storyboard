@@ -128,7 +128,7 @@ Let's get back to the action!</string>
                                                 <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <segue destination="3NL-Hq-Ara" kind="unwind" unwindAction="unwindToMainMenuWithSender:" id="8Pa-n2-g0I"/>
+                                                <segue destination="3NL-Hq-Ara" kind="unwind" unwindAction="unwindToMainMenu:" id="kpT-h6-maQ"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Generating ninjas in the dojo..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhu-VK-t5Y">
@@ -277,7 +277,7 @@ Let's get back to the action!</string>
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kSu-ag-dB5" id="LIY-9C-Yte">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Technique Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqE-ux-ZwY">
@@ -340,7 +340,7 @@ Let's get back to the action!</string>
                         <outlet property="journalTextField" destination="4ge-MG-MeQ" id="xiQ-Dr-qg2"/>
                         <outlet property="tableView" destination="9YR-cg-77C" id="2Jv-f6-Gb2"/>
                         <segue destination="ORL-CZ-3iL" kind="show" identifier="Add Technique" id="9Nl-Kd-FDG"/>
-                        <segue destination="Ov0-hD-gSg" kind="unwind" identifier="Unwind to Main Menu" unwindAction="unwindToMainMenuWithSender:" id="vif-TL-zMH"/>
+                        <segue destination="Ov0-hD-gSg" kind="unwind" identifier="Unwind to Main Menu" unwindAction="unwindToMainMenu:" id="0jx-OH-1qj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpA-AU-ZDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -691,7 +691,7 @@ Let's get back to the action!</string>
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="ue3-DJ-7kd" kind="unwind" identifier="Select Techniques" unwindAction="unwindToNewTrainingWithSender:" id="XEX-c2-7Hq"/>
+                        <segue destination="ue3-DJ-7kd" kind="unwind" identifier="Select Techniques" unwindAction="unwindToNewTraining:" id="5FU-3E-h4G"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Wm-bq-0kY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -869,6 +869,6 @@ Let's get back to the action!</string>
         <image name="Technique" width="375" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Elv-vk-fHq"/>
+        <segue reference="9Nl-Kd-FDG"/>
     </inferredMetricsTieBreakers>
 </document>

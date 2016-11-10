@@ -64,7 +64,8 @@ class MyDojoViewController: UIViewController {
         
         view.bringSubview(toFront: spinnerPageControl)
         
-        StatisticsManager.sharedInstance.printStatistics()
+        debugPrint(StatisticsManager.sharedInstance)
+        //StatisticsManager.sharedInstance.printStatistics()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -128,9 +129,13 @@ extension MyDojoViewController: ListensForNotifications {
                 if let _ = notification.userInfo?["dojo"] as? Dojo
                 {
                     self.dojo = notification.userInfo!["dojo"] as? Dojo
-                    self.performSegue(withIdentifier: Constants.selectedDojoSegue, sender: self)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.performSegue(withIdentifier: Constants.selectedDojoSegue, sender: self)
+                    }
                 } else {
-                    self.performSegue(withIdentifier: Constants.newDojoSegue, sender: self)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.performSegue(withIdentifier: Constants.newDojoSegue, sender: self)
+                    }
                 }
                 break
             default:
@@ -242,7 +247,9 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
         if cell.reuseIdentifier == Constants.smallTile {
-            performSegue(withIdentifier: (mainMenu?.menuItems?.allObjects[indexPath.row] as? MenuItem)!.action!, sender: self)
+            DispatchQueue.main.async { [unowned self] in
+                self.performSegue(withIdentifier: (self.mainMenu?.menuItems?.allObjects[indexPath.row] as? MenuItem)!.action!, sender: self)
+            }
         }
     }
     
@@ -256,6 +263,8 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
 
 extension MyDojoViewController: MenuItemDelegate {
     func menuButtonAction(with action: String) {
-        performSegue(withIdentifier: action, sender: self)
+        DispatchQueue.main.async { [unowned self] in
+            self.performSegue(withIdentifier: action, sender: self)
+        }
     }
 }

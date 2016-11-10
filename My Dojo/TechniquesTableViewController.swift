@@ -68,6 +68,9 @@ class TechniquesTableViewController: CoreDataTableViewController {
             removeAllButton?.isEnabled = isTechniqueSelected
         }
         setupTableView()
+        if selectedTechniques.isEmpty {
+            clearSelection()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,8 +179,10 @@ class TechniquesTableViewController: CoreDataTableViewController {
                 if technique.isSelected { technique.isSelected = false }
             }
         } else {
-            for technique in (fetchedResultsController?.fetchedObjects as? [Technique])! {
-                if technique.isSelected { technique.isSelected = false }
+            if fetchedResultsController != nil {
+                for technique in (fetchedResultsController?.fetchedObjects as? [Technique])! {
+                    if technique.isSelected { technique.isSelected = false }
+                }
             }
         }
         isTechniqueSelected = false
@@ -199,7 +204,12 @@ class TechniquesTableViewController: CoreDataTableViewController {
     }
     
     func doneButtonAction() {
-        performSegue(withIdentifier: Constants.selectTechniquesSegue, sender: self)
+        debugPrint("doneButtonAction called")
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.performSegue(withIdentifier: Constants.selectTechniquesSegue, sender: self)
+        }
+        
     }
     
     

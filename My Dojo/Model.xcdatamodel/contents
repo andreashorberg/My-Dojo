@@ -26,6 +26,11 @@
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="menuItems" inverseEntity="Menu" syncable="YES"/>
     </entity>
+    <entity name="Statistics" representedClassName=".Statistics" syncable="YES">
+        <attribute name="currentTrainingStreak" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfTrainedTechniques" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfTrainings" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="StrategyBook" representedClassName=".StrategyBook" syncable="YES">
         <attribute name="japaneseName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,5 +59,6 @@
         <element name="StrategyBook" positionX="-335" positionY="-367" width="128" height="88"/>
         <element name="Technique" positionX="252" positionY="-324" width="128" height="148"/>
         <element name="Training" positionX="61" positionY="-90" width="128" height="103"/>
+        <element name="Statistics" positionX="-468" positionY="-256" width="128" height="88"/>
     </elements>
 </model>

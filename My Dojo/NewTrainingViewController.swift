@@ -55,6 +55,7 @@ class NewTrainingViewController: UIViewController {
     
     @IBOutlet weak var addTrainingButton: UIButton!
     
+    // This will save the training to Core data, once doing that a notification will be called that changes view
     @IBAction func addNewtrainingToProgress(_ sender: UIButton) {
         DatabaseManager.context.perform { [unowned self] in
             guard let training: Training = Training.createTraining(at: self.dateTextField.text!, journal: self.journalTextField.text!, inManagedObjectContext: DatabaseManager.context) else { return }
@@ -85,7 +86,9 @@ class NewTrainingViewController: UIViewController {
             destinationvc.isSelectionMode = true
             if !selectedTechniques!.isEmpty {
                 destinationvc.selectedTechniques = selectedTechniques!
-            } /*else {
+            } else {
+                destinationvc.clearSelection()
+            }/*else {
                 if !destinationvc.selectedTechniques.isEmpty {
                     destinationvc.clearSelection()
                 }
@@ -150,7 +153,9 @@ class NewTrainingViewController: UIViewController {
     var selectedTechniques: [Technique]? = [Technique]()
     
     @IBAction func addTechniques(_ sender: Any) {
-        performSegue(withIdentifier: Constants.addTechniquesSegue, sender: self)
+        DispatchQueue.main.async { [unowned self] in
+            self.performSegue(withIdentifier: Constants.addTechniquesSegue, sender: self)
+        }
     }
     
     // MARK: Journal
@@ -163,7 +168,6 @@ extension NewTrainingViewController {
     {
         if let source = sender.source as? TechniquesTableViewController {
             selectedTechniques = source.selectedTechniques
-            source.clearSelection()
             tableView.reloadData()
         }
     }
@@ -198,14 +202,17 @@ extension NewTrainingViewController: ListensForNotifications {
         
         let trainingCreatedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .newTrainingCreatedNotification, object: nil, queue: OperationQueue.main) { [unowned self] notification in
             
+            StatisticsManager.sharedInstance.updateStatistics()
+            
             self.selectedTechniques = nil
-            self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
-            if let training = notification.object as? Training {
-                self.updateStatistics(with: training)
+            DispatchQueue.main.async { [unowned self] in
+                self.performSegue(withIdentifier: Constants.unwindToMainSeuge, sender: self)
             }
+            
         }
         
         notificationObservers.append(trainingCreatedObserver)
+        debugPrint("Add notification observers")
     }
     
     internal func removeNotificationObservers() {
@@ -218,12 +225,5 @@ extension NewTrainingViewController: ListensForNotifications {
             debugPrint("Remove notification observers")
         }
         debugPrint("Notification observers are already removed")
-    }
-}
-// MARK: Statistics
-
-extension NewTrainingViewController {
-    open func updateStatistics(with training: Training) {
-        
     }
 }

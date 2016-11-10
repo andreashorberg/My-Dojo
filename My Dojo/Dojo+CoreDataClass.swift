@@ -26,10 +26,10 @@ open class Dojo: NSManagedObject {
     
     class func dojo(with mapItem: MKMapItem?, and mapImage: UIImage?, inManagedObjectContext context: NSManagedObjectContext) -> Dojo?
     {
-        let request = NSFetchRequest<Dojo>(entityName: "Dojo")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Dojo")
         
         // this is when we have a dojo in the database already
-        if let dojo = (try? context.fetch(request as! NSFetchRequest<NSFetchRequestResult>))?.first as? Dojo {
+        if let dojo = (try? context.fetch(request))?.first as? Dojo {
             debugPrint("Found dojo in database")
             return dojo
             // this is the case when querying the database to see if we have a saved dojo but there is none

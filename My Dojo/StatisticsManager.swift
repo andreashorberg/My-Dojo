@@ -8,24 +8,55 @@
 
 import Foundation
 import CoreData
+import UIKit
 
-class StatisticsManager {
+class StatisticsManager : CustomStringConvertible, CustomDebugStringConvertible {
+    var description: String {
+        get {
+            return "# of trainings: \(getNumberOfTrainings()), # of trained techniques: \(getNumberOfTrainedTechniques()), current streak: \(getCurrentStreak())"
+        }
+    }
+    
+    var debugDescription: String {
+        get {
+            return "# of trainings: \(getNumberOfTrainings()), # of trained techniques: \(getNumberOfTrainedTechniques()), current streak: \(getCurrentStreak()), statistics: \(statistics)"
+        }
+    }
+    
     static let sharedInstance = StatisticsManager()
     
     fileprivate init() {}
     
-    open func getNumberOfTrainings() -> Int {
+    fileprivate var _statistics = Statistics.getStatistics()
+    fileprivate var statistics: Statistics? {
+        get {
+            return _statistics
+        }
+    }
+    
+    open func updateStatistics() {
+        updateCurrentStreak()
+        updateNumberOfTrainings()
+        updateNumberOfTrainedTechniques()
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        
+//        printStatistics()
+    }
+    
+    fileprivate func updateNumberOfTrainings() {
         
         let count = 0
         
         if let trainingCount = try? DatabaseManager.context.count(for: NSFetchRequest<NSFetchRequestResult>(entityName:"Training")){
-            return trainingCount
+            statistics?.numberOfTrainings = Int64(trainingCount)
+            return
         }
-        return count
+        statistics?.numberOfTrainings = Int64(count)
     }
     
     
-    open func getNumberOfTrainedTechniques() -> Int {
+    fileprivate func updateNumberOfTrainedTechniques() {
         var count = 0
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Training")
         request.predicate = NSPredicate(format: "ANY techniques.@count > 0")
@@ -34,12 +65,14 @@ class StatisticsManager {
             for training in trainings! {
                 count += training.techniques!.count
             }
-            return count
+            statistics?.numberOfTrainedTechniques = Int64(count)
+            return
         }
-        return 0
+        statistics?.numberOfTrainedTechniques = Int64(count)
+        return
     }
     
-    open func updateCurrentStreak(with training: Training) -> Int {
+    fileprivate func updateCurrentStreak() {
         var streak = 0
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Training")
@@ -62,22 +95,35 @@ class StatisticsManager {
                     } else if trainingDate.weekOfYear == lastTrainingWeek {
                         continue
                     } else {
-                        return streak
+                        statistics?.currentTrainingStreak = Int64(streak)
+                        return
                     }
                 } else {
                     lastTrainingWeek = trainingDate.weekOfYear!
                     streak += 1
                 }
             }
-            return streak
+            statistics?.currentTrainingStreak = Int64(streak)
+            return
         }
-        
-        return streak
+        statistics?.currentTrainingStreak = Int64(streak)
+        return
     }
     
-    open func printStatistics() {
+    open func getNumberOfTrainings() -> Int {
+        return statistics != nil ? Int(statistics!.numberOfTrainings) : 0
+    }
+    open func getNumberOfTrainedTechniques() -> Int {
+        return statistics != nil ? Int(statistics!.numberOfTrainedTechniques) : 0
+    }
+    
+    open func getCurrentStreak() -> Int {
+        return statistics != nil ? Int(statistics!.currentTrainingStreak) : 0
+    }
+    
+    /*open func printStatistics() {
         print("\(getNumberOfTrainings()) Trainings")
         print("\(getNumberOfTrainedTechniques()) Techniques")
-       // print("\(getCurrentStreak()) Current streak")
-    }
+        print("\(getCurrentStreak()) Current streak")
+    }*/
 }
