@@ -40,8 +40,6 @@ class StatisticsManager : CustomStringConvertible, CustomDebugStringConvertible 
         updateNumberOfTrainedTechniques()
         
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-        
-//        printStatistics()
     }
     
     fileprivate func updateNumberOfTrainings() {
@@ -120,10 +118,4 @@ class StatisticsManager : CustomStringConvertible, CustomDebugStringConvertible 
     open func getCurrentStreak() -> Int {
         return statistics != nil ? Int(statistics!.currentTrainingStreak) : 0
     }
-    
-    /*open func printStatistics() {
-        print("\(getNumberOfTrainings()) Trainings")
-        print("\(getNumberOfTrainedTechniques()) Techniques")
-        print("\(getCurrentStreak()) Current streak")
-    }*/
 }
