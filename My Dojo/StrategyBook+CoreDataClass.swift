@@ -18,12 +18,12 @@ open class StrategyBook: NSManagedObject {
         request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
         
         if let strategyBook = (try? context.fetch(request as! NSFetchRequest<NSFetchRequestResult>))?.first as? StrategyBook {
-            print("Strategybook \(name) found in database")
+//            print("Strategybook \(name) found in database")
             return strategyBook
         } else if let strategyBook = NSEntityDescription.insertNewObject(forEntityName: "StrategyBook", into: context) as? StrategyBook {
             strategyBook.japaneseName = name
             strategyBook.unique = id
-            print("\(id) Strategybook \(name) inserted in database")
+//            print("\(id) Strategybook \(name) inserted in database")
             return strategyBook
         }
         

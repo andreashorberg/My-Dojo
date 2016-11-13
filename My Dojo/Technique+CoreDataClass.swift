@@ -17,7 +17,7 @@ open class Technique: NSManagedObject {
         if let technique = getTechnique(with: name, id: id, context: context) {
             return technique
         } else if let technique = techniqueWith(name: name, andId: id, for: chapter, isWarmup: false, isAlonePractice: false, isTogetherPractice: false, inManagedObjectContext: context) {
-            debugPrint("\(id) Technique \(name) from chapter \(technique.chapter?.japaneseName!) and strategybook \(technique.chapter?.strategyBook?.japaneseName) inserted in database")
+//            debugPrint("\(id) Technique \(name) from chapter \(technique.chapter?.japaneseName!) and strategybook \(technique.chapter?.strategyBook?.japaneseName) inserted in database")
             return technique
         }
         
@@ -45,7 +45,7 @@ open class Technique: NSManagedObject {
         
         request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
         if let technique = (try? context.fetch(request))?.first as? Technique {
-            debugPrint("Technique \(name) from chapter \(technique.chapter?.japaneseName) and strategybook \(technique.chapter?.strategyBook?.japaneseName) found in database")
+            //debugPrint("Technique \(name) from chapter \(technique.chapter?.japaneseName) and strategybook \(technique.chapter?.strategyBook?.japaneseName) found in database")
             return technique
         }
         return nil

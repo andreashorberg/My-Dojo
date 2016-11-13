@@ -38,8 +38,8 @@ public struct Constants {
     static let unwindToMainSeuge = "Unwind to Main Menu"
     
     // MARK: StoryBoard Items
-    static let largeTileSize = CGSize(width: UIScreen.main.bounds.size.width, height: 150)
-    static let smallTileSize = CGSize(width: UIScreen.main.bounds.size.width / 2, height: 150)
+    static let largeTileSize = CGSize(width: UIScreen.main.bounds.size.width - 16, height: 150)
+    static let smallTileSize = CGSize(width: (UIScreen.main.bounds.size.width / 2) - 12, height: 142)
     static let minButtonHeight = CGFloat(44)
     
     static let largeTile = "Large Tile"
@@ -69,4 +69,5 @@ extension Notification.Name
     static let getMainMenuNotification = Notification.Name("getMainMenuNotification")
     static let plistReadNotification = Notification.Name("plistReadNotification")
     static let newTrainingCreatedNotification = Notification.Name("newTrainingCreatedNotification")
+    static let statisticsUpdatedNotification = Notification.Name("statisticsUpdatedNotification")
 }

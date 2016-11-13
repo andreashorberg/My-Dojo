@@ -49,6 +49,7 @@
 		EE5D9DE61DCB69B800B87D5A /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */; };
 		EEE5E3921DD3DC2200D433DF /* Statistics+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5E3901DD3DC2200D433DF /* Statistics+CoreDataClass.swift */; };
 		EEE5E3931DD3DC2200D433DF /* Statistics+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5E3911DD3DC2200D433DF /* Statistics+CoreDataProperties.swift */; };
+		EEF18A051DD4D1E600835B9B /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF18A041DD4D1E600835B9B /* CountingLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 		EEE5E3901DD3DC2200D433DF /* Statistics+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EEE5E3911DD3DC2200D433DF /* Statistics+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Statistics+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EEF18A041DD4D1E600835B9B /* CountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				EE5D9DC11DCA54B700B87D5A /* DatabaseManager.swift */,
 				EE5D9DE51DCB69B800B87D5A /* DateTextField.swift */,
 				EE0A2CBE1DD2118100F3EFEE /* StatisticsManager.swift */,
+				EEF18A041DD4D1E600835B9B /* CountingLabel.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				EE5D9DC61DCA54B700B87D5A /* DojoSearchTableViewController.swift in Sources */,
 				EE5D9DE61DCB69B800B87D5A /* DateTextField.swift in Sources */,
 				EE5D9DD91DCA54B700B87D5A /* CoreDataTableViewController.swift in Sources */,
+				EEF18A051DD4D1E600835B9B /* CountingLabel.swift in Sources */,
 				EE5D9DD21DCA54B700B87D5A /* Dojo+CoreDataProperties.swift in Sources */,
 				EE5D9D8A1DCA532D00B87D5A /* AppDelegate.swift in Sources */,
 				EE5453491DCBBF8700021177 /* Training+CoreDataProperties.swift in Sources */,

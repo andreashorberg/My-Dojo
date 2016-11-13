@@ -20,9 +20,6 @@ class MyDojoViewController: UIViewController {
     fileprivate var dojoButtonCell: LargeTileCollectionViewCell?
     
     @IBOutlet weak var menuCollectionView: UICollectionView!
-    @IBOutlet weak var spinnerCollectionView: UICollectionView!
-    
-    @IBOutlet weak var spinnerPageControl: UIPageControl!
     
     fileprivate var mainMenu: Menu? {
         didSet {
@@ -40,6 +37,8 @@ class MyDojoViewController: UIViewController {
         addNotificationObservers()
         
         DatabaseManager.createMainMenu()
+        
+        updateStatisticsLabels(restart: true)
     }
     
     deinit {
@@ -60,20 +59,18 @@ class MyDojoViewController: UIViewController {
     
         if dojo == nil {
             DatabaseManager.getDojo(from: self)
-        }/* else if dojo != nil && !dojoButtonCell!.isDojoSelected {
-            dojoButtonCell?.mapImage = dojo?.mapImage as! UIImage?
-            dojoButtonCell?.isDojoSelected = true
-            menuCollectionView.reloadData()//
-        }*/
-        
-        view.bringSubview(toFront: spinnerPageControl)
+        }
         
         debugPrint(StatisticsManager.sharedInstance)
-        //StatisticsManager.sharedInstance.printStatistics()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //updateStatisticsLabels()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +83,28 @@ class MyDojoViewController: UIViewController {
             sdvc.navigationItem.title = dojo?.mapItem?.placemark.name
             sdvc.myDojo = dojo
         }
+    }
+    
+    // MARK: - Statistics
+    
+    
+    @IBOutlet weak var numberOfTrainingsLabel: CountingLabel!
+    @IBOutlet weak var numberOfTrainedTechniquesLabel: CountingLabel!
+    @IBOutlet weak var currentStreakLabel: CountingLabel!
+    
+    fileprivate func updateStatisticsLabels(restart: Bool) {
+        
+        
+        var beginNum: Int = restart == true ? 0 : numberOfTrainingsLabel!.currentValue
+        numberOfTrainingsLabel?.beginCounting(from: beginNum, to: StatisticsManager.sharedInstance.getNumberOfTrainings())
+       
+        beginNum = restart == true ? 0 : numberOfTrainedTechniquesLabel!.currentValue
+        numberOfTrainedTechniquesLabel.beginCounting(from: beginNum, to: StatisticsManager.sharedInstance.getNumberOfTrainedTechniques())
+        
+        currentStreakLabel.suffix = "w"
+        beginNum = restart == true ? 0 : currentStreakLabel!.currentValue
+        currentStreakLabel.beginCounting(from: beginNum, to: StatisticsManager.sharedInstance.getCurrentStreak())
+ 
     }
 }
 
@@ -166,10 +185,16 @@ extension MyDojoViewController: ListensForNotifications {
                 DatabaseManager.populateDatabase(with: plist)
             }
         }
+        
+        let statisticsUpdatedObserver: NSObjectProtocol? = notificationCenter.addObserver(forName: .statisticsUpdatedNotification, object: nil, queue: OperationQueue.main) { [unowned self] _ in
+            self.updateStatisticsLabels(restart: false)
+        }
+        
         notificationObservers.append(getDojoObserver!)
         notificationObservers.append(dojoRemovedObserver!)
         notificationObservers.append(getMainMenuObserver!)
         notificationObservers.append(plistReadObserver!)
+        notificationObservers.append(statisticsUpdatedObserver!)
     }
     
     internal func removeNotificationObservers()
@@ -179,9 +204,9 @@ extension MyDojoViewController: ListensForNotifications {
                 notificationCenter.removeObserver(observer!)
             }
             notificationObservers.removeAll()
-            debugPrint("Remove notification observers")
+            debugPrint("Remove notification observers from MyDojo")
         }
-        debugPrint("Notification observers are already removed")
+        debugPrint("Notification observers are already removed from MyDojo")
     }
 }
 
@@ -193,8 +218,6 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
         var count = 0
         if collectionView == menuCollectionView! {
             count = (mainMenu?.menuItems?.count) != nil ? (mainMenu?.menuItems?.count)! : 0
-        } else if collectionView == spinnerCollectionView! {
-            count = 1
         }
         return count
     }
@@ -245,8 +268,6 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
             case Constants.smallTile: size = Constants.smallTileSize; break
             default: break
             }
-        } else if collectionView == spinnerCollectionView {
-            size = spinnerCollectionView.bounds.size
         }
         return size
     }

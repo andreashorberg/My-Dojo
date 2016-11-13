@@ -40,6 +40,8 @@ class StatisticsManager : CustomStringConvertible, CustomDebugStringConvertible 
         updateNumberOfTrainedTechniques()
         
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        let notification = Notification(name: .statisticsUpdatedNotification, object: self, userInfo: nil)
+        NotificationCenter.default.post(notification)
     }
     
     fileprivate func updateNumberOfTrainings() {
