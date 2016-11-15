@@ -15,7 +15,6 @@ class SelectedDojoViewController: UIViewController {
     fileprivate var areYouSure: UIAlertController?
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var addressLabel: UILabel!
     
     @IBAction func changeDojoAction(_ sender: AnyObject) {
         areYouSure = UIAlertController.init(title: Constants.areYouSureTitle, message: Constants.areYouSureMessage, preferredStyle: .alert)
@@ -38,11 +37,10 @@ class SelectedDojoViewController: UIViewController {
         super.viewWillAppear(animated)
         addNotificationObservers()
         DispatchQueue.main.async { [unowned self] in
-            self.addressLabel.text = self.myDojo?.mapItem?.placemark.title
             self.prepareMapView()
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeNotificationObservers()

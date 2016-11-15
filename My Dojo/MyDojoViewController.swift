@@ -85,6 +85,20 @@ class MyDojoViewController: UIViewController {
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        var shouldPerform = true
+        
+        if identifier == "Progress" || identifier == "Suggest Training" {
+            let alert = UIAlertController(title: "Not implemented", message: "Woops, this feature is not implemented yet", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Oh well..", style: .default, handler: nil)
+            alert.addAction(ok)
+            
+            self.present(alert, animated: true, completion: nil)
+            shouldPerform = false
+        }
+        return shouldPerform
+    }
+    
     // MARK: - Statistics
     
     
@@ -245,6 +259,12 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
                 cell.action = menuItem?.action
                 cell.delegate = self
                 cell.button.setTitle(menuItem?.title, for: .normal)
+                if !(menuItem?.imageAsset?.isEmpty)! {
+                    let image = UIImage(named: menuItem!.imageAsset!)
+                    cell.button.setImage(image, for: .normal)
+                    cell.button.imageView?.contentMode = .scaleAspectFit
+                }
+                
                 break
             default:
                 break
@@ -293,7 +313,9 @@ extension MyDojoViewController : UICollectionViewDelegate, UICollectionViewDataS
 extension MyDojoViewController: MenuItemDelegate {
     func menuButtonAction(with action: String) {
         DispatchQueue.main.async { [unowned self] in
-            self.performSegue(withIdentifier: action, sender: self)
+            if self.shouldPerformSegue(withIdentifier: action, sender: self) {
+                self.performSegue(withIdentifier: action, sender: self)
+            }
         }
     }
 }

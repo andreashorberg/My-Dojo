@@ -170,18 +170,29 @@ class DatabaseManager {
             return
         }
         
-        guard let _ = MenuItem.menuItem(with: "Techniques", id: "0", action: "Techniques Table", imageAsset: "Techniques Button", sortOrder: 0, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
+        
+        guard let _ = MenuItem.menuItem(with: "Techniques", id: "0", action: "Techniques Table", imageAsset: "Techniques Button", sortOrder: 2, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
             print("Couldn't create techniques menu item")
             return
         }
         
-        guard let _ = MenuItem.menuItem(with: "New Training", id: "1", action: "New Training", imageAsset: "New Training Button", sortOrder: 1, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
+        guard let _ = MenuItem.menuItem(with: "New Training", id: "1", action: "New Training", imageAsset: "New Training Button", sortOrder: 3, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
             print("Couldn't create new training menu item")
             return
         }
         
-        guard let _ = MenuItem.menuItem(with: "My Dojo", id: "2", action: "Selected Dojo", imageAsset: "Dojo", sortOrder: 2, reusableIdentifier: "Large Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
+        guard let _ = MenuItem.menuItem(with: "My Dojo", id: "2", action: "Selected Dojo", imageAsset: "Dojo", sortOrder: 4, reusableIdentifier: "Large Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
             print("Couldn't create my dojo menu item")
+            return
+        }
+        
+        guard let _ = MenuItem.menuItem(with: "Progress", id: "3", action: "Progress", imageAsset: "Progress Button", sortOrder: 0, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
+            print("Couldn't create progress menu item")
+            return
+        }
+        
+        guard let _ = MenuItem.menuItem(with: "Suggest training", id: "4", action: "Suggest Training", imageAsset: "Suggest Button", sortOrder: 1, reusableIdentifier: "Small Tile", for: menu, inManagedObjectContext: DatabaseManager.context) else {
+            print("Couldn't create progress menu item")
             return
         }
     }
