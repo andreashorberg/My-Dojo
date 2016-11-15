@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE0A2CBD1DD1D25800F3EFEE /* MainSpinnerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A2CBC1DD1D25800F3EFEE /* MainSpinnerViewCell.swift */; };
 		EE0A2CBF1DD2118100F3EFEE /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A2CBE1DD2118100F3EFEE /* StatisticsManager.swift */; };
 		EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */; };
 		EE5453491DCBBF8700021177 /* Training+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */; };
@@ -53,7 +52,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EE0A2CBC1DD1D25800F3EFEE /* MainSpinnerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpinnerViewCell.swift; sourceTree = "<group>"; };
 		EE0A2CBE1DD2118100F3EFEE /* StatisticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
 		EE5453461DCBBF8700021177 /* Training+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EE5453471DCBBF8700021177 /* Training+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Training+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				EE5D9DAE1DCA54B700B87D5A /* LargeTileCollectionViewCell.swift */,
 				EE5D9DAF1DCA54B700B87D5A /* SmallTileCollectionViewCell.swift */,
 				EE5D9DE31DCA595C00B87D5A /* NewTrainingTechniqueTableViewCell.swift */,
-				EE0A2CBC1DD1D25800F3EFEE /* MainSpinnerViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -329,7 +326,6 @@
 				EE5D637F1DD38DCC001E0E63 /* ListensForNotifications.swift in Sources */,
 				EE5D9DC41DCA54B700B87D5A /* NewDojoViewController.swift in Sources */,
 				EE5453481DCBBF8700021177 /* Training+CoreDataClass.swift in Sources */,
-				EE0A2CBD1DD1D25800F3EFEE /* MainSpinnerViewCell.swift in Sources */,
 				EE5D9DC71DCA54B700B87D5A /* TechniqueDetailViewController.swift in Sources */,
 				EE5D9DD11DCA54B700B87D5A /* Dojo+CoreDataClass.swift in Sources */,
 				EE5D9DCD1DCA54B700B87D5A /* Menu+CoreDataProperties.swift in Sources */,
