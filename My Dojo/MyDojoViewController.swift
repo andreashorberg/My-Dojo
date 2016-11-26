@@ -125,9 +125,8 @@ class MyDojoViewController: UIViewController {
 // Unwind segue to get back to main menu from different places
 extension MyDojoViewController {
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue) {
-        if let source = sender.source as? SelectedDojoViewController {
-            //self.dojo = source.myDojo //maybe this should be changed to nil? this should only occur when going back from changing dojo
-            self.dojo = nil //maybe this should be changed to nil? this should only occur when going back from changing dojo
+        if sender.source is SelectedDojoViewController {
+            self.dojo = nil
         }
     }
 }

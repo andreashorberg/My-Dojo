@@ -38,8 +38,6 @@ class StatisticsManager: CustomStringConvertible, CustomDebugStringConvertible {
             return Statistics.getStatistics()
         }
     }
-    
-    
 
     // MARK: - Update functions
 

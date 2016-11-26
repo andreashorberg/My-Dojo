@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 open class MenuItem: NSManagedObject {
+    
+    // This is is an object that has to have a lot of values
+    // swiftlint:disable:next function_parameter_count
     class func menuItem(with title: String,
                         unique: String,
                         action: String,
