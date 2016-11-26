@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 open class Training: NSManagedObject {
     class func createTraining(at date: String, journal: String, inManagedObjectContext context: NSManagedObjectContext) -> Training? {
         if let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context) as? Training {

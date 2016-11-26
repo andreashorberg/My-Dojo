@@ -12,7 +12,7 @@ import CoreData
 extension Menu {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<Menu>(entityName: "Menu") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "Menu")
     }
 
     @NSManaged public var name: String?

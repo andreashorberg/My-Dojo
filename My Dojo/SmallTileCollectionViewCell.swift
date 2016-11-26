@@ -10,7 +10,7 @@ import UIKit
 
 class SmallTileCollectionViewCell: UICollectionViewCell, MenuItemCell {
     @IBOutlet weak var button: UIButton!
-    
+
     var action: String?
     var delegate: MenuItemDelegate?
     @IBAction func buttonAction(_ sender: UIButton) {

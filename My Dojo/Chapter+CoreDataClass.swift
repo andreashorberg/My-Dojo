@@ -9,24 +9,24 @@
 import Foundation
 import CoreData
 
-
 open class Chapter: NSManagedObject {
-    class func chapterWithName(_ name: String, andId id: String, for strategyBook: StrategyBook, inManagedObjectContext context: NSManagedObjectContext) -> Chapter?
-    {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
-        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
+    class func chapterWithName(_ name: String,
+                               andId unique: String,
+                               for book: StrategyBook,
+                               inManagedObjectContext context: NSManagedObjectContext) -> Chapter? {
         
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
+        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, unique )
+
         if let chapter = (try? context.fetch(request))?.first as? Chapter {
-//            print("Chapter \(name) from strategy book \(chapter.strategyBook?.japaneseName) found in database")
             return chapter
         } else if let chapter = NSEntityDescription.insertNewObject(forEntityName: "Chapter", into: context) as? Chapter {
             chapter.japaneseName = name
-            chapter.unique = id
-            chapter.strategyBook = strategyBook
-//            print("\(id) Chapter \(name) from strategy book \(chapter.strategyBook?.japaneseName) inserted in database")
+            chapter.unique = unique 
+            chapter.strategyBook = book
             return chapter
         }
-        
+
         return nil
     }
 }

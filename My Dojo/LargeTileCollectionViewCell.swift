@@ -9,26 +9,28 @@
 import UIKit
 
 class LargeTileCollectionViewCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var button: UIButton!
-    
+
     open var mapImage: UIImage?
     open var isDojoSelected = false
     open var delegate: MenuItemDelegate?
     open var action: String?
-    
+
     fileprivate var dojoImageView: UIImageView?
     fileprivate var myDojoButtonBlur: UIVisualEffectView?
     fileprivate var getDojoObserver: NSObjectProtocol?
-    
-    
+
     override func draw(_ rect: CGRect) {
-        
+
         if getDojoObserver == nil {
-            getDojoObserver = NotificationCenter.default.addObserver(forName: .getDojoNotification, object: nil, queue: OperationQueue.main) { [unowned self] notification in
+            getDojoObserver = NotificationCenter.default.addObserver(forName: .getDojoNotification,
+                                                                     object: nil,
+                                                                     queue: OperationQueue.main) { [unowned self] notification in
                 if let dojo = notification.userInfo?["dojo"] as? Dojo {
                     DispatchQueue.main.async { [unowned self] in
-                        self.mapImage = dojo.mapImage as! UIImage?
+                        guard let image = dojo.mapImage as? UIImage else { fatalError("Couldn't set mapImage for button") }
+                        self.mapImage = image
                     }
                     self.isDojoSelected = true
                 } else {
@@ -45,7 +47,7 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
             if let image = self.mapImage, self.isDojoSelected {
                 self.dojoImageView = UIImageView(image: #imageLiteral(resourceName: "Dojo"))
                 self.dojoImageView?.tag = 100
-                
+
                 if self.button.image(for: UIControlState.normal) != image {
                     self.button.setImage(image, for: .normal)
                     self.button.setImage(image, for: .highlighted)
@@ -53,7 +55,7 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
                     var 🛠_TODO_REPLACE_IMAGE_WITH_LABEL: Any?
                     self.dojoImageView!.center.x = self.bounds.midX
                     self.dojoImageView!.center.y = self.bounds.midY
-                    
+
                     self.button.insertSubview(self.dojoImageView!, at: 0)
                     self.button.bringSubview(toFront: self.dojoImageView!)
                 }
@@ -71,9 +73,8 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
-    fileprivate func removeButtonEffects()
-    {
+
+    fileprivate func removeButtonEffects() {
         self.button.setImage(nil, for: UIControlState.highlighted)
         self.button.setImage(nil, for: UIControlState.normal)
 
@@ -82,16 +83,19 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
         self.setNeedsDisplay()
 
     }
-    
-    func blur(button: UIButton, show: Bool, duration: Double)
-    {
+
+    func blur(button: UIButton, show: Bool, duration: Double) {
         guard let blur = self.myDojoButtonBlur else { return }
 
         DispatchQueue.main.async {
-            UIView.transition(with: button, duration: duration, options: .transitionCrossDissolve, animations: { blur.isHidden = show }, completion: nil)
+            UIView.transition(with: button,
+                              duration: duration,
+                              options: .transitionCrossDissolve,
+                              animations: { blur.isHidden = show },
+                              completion: nil)
         }
     }
-    
+
     @IBAction func myDojoAction(_ sender: UIButton) {
         if delegate != nil, action != nil, !(action?.isEmpty)! {
             self.buttonAction(sender)
@@ -100,11 +104,11 @@ class LargeTileCollectionViewCell: UICollectionViewCell {
             self.blur(button: self.button, show: false, duration: Constants.buttonTransitionDuration)
         }
     }
-    
+
     @IBAction func myDojoButtonHideBlur(_ sender: UIButton) {
         self.blur(button: self.button, show: true, duration: Constants.buttonTransitionDuration)
     }
-    
+
     @IBAction func myDojoButtonShowBlur(_ sender: UIButton) {
         self.blur(button: self.button, show: false, duration: Constants.buttonTransitionDuration)
     }
@@ -115,4 +119,3 @@ extension LargeTileCollectionViewCell: MenuItemCell {
         delegate?.menuButtonAction(with: action!)
     }
 }
- 

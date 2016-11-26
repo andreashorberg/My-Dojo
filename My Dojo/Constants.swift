@@ -50,7 +50,6 @@ public struct Constants {
     // MARK: View tags
     static let dojoImageView = 100
     
-    
     // MARK: Colors
     static let backgroundColor = UIColor(red: scalar(31), green: scalar(31), blue: scalar(31), alpha: 1)
     static let systemColor = UIColor(red: scalar(186), green: scalar(217), blue: scalar(181), alpha: 1)
@@ -63,8 +62,7 @@ public struct Constants {
     }
 }
 
-extension Notification.Name
-{
+extension Notification.Name {
     static let getDojoNotification = Notification.Name("getDojoNotification")
     static let getMainMenuNotification = Notification.Name("getMainMenuNotification")
     static let plistReadNotification = Notification.Name("plistReadNotification")

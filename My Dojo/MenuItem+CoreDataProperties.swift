@@ -9,11 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension MenuItem {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<MenuItem>(entityName: "MenuItem") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "MenuItem")
     }
 
     @NSManaged public var imageAsset: String?

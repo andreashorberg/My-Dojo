@@ -32,7 +32,7 @@ class CountingLabel: UILabel {
     open var easeOut = true
     open var currentValue = 0
     
-    func beginCounting(to endValue: Int){
+    func beginCounting(to endValue: Int) {
         beginCounting(from: 0, to: endValue)
     }
     
@@ -97,12 +97,19 @@ class CountingLabel: UILabel {
     fileprivate func updateText() {
         
         if isAnimating {
-            UIView.transition(with: self, duration: iterationInterval, options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] _ in
+            
+            let animations: (() -> Void)? = { [unowned self] _ in
                 self.text = String(self.currentValue)
                 if !self.suffix.isEmpty {
                     self.text?.append(self.suffix)
                 }
-            }, completion: nil)
+            }
+            
+            UIView.transition(with: self,
+                              duration: iterationInterval,
+                              options: [.curveEaseInOut, .transitionCrossDissolve],
+                              animations: animations,
+                              completion: nil)
         } else {
             text = String(currentValue)
             if !suffix.isEmpty {

@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 
-
 protocol MenuItemCell {
     var delegate: MenuItemDelegate? { get set }
     var action: String? { get set }

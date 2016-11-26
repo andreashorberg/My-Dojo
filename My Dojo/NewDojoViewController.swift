@@ -17,79 +17,81 @@ class NewDojoViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     var selectedPin: MKPlacemark?
-    
+
     @IBOutlet weak var mapView: MKMapView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
         locationManager.desiredAccuracy = Constants.locationAccuracy
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        
-        let dojoSearchTable = storyboard!.instantiateViewController(withIdentifier: "DojoSearchTable") as! DojoSearchTableViewController
+
+        let identifier = "DojoSearchTable"
+        guard let dojoSearchTable = storyboard?.instantiateViewController(withIdentifier: identifier) as? DojoSearchTableViewController else {
+            fatalError("Not a Dojo Search TableView")
+        }
         resultSearchController = UISearchController(searchResultsController: dojoSearchTable)
         resultSearchController?.searchResultsUpdater = dojoSearchTable
-        
-        let searchBar = resultSearchController!.searchBar
+
+        guard let searchBar = resultSearchController?.searchBar else { fatalError("Couldn't get the dojo searchbar") }
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for dojos"
-        navigationItem.titleView = resultSearchController?.searchBar
-    
+//        navigationItem.titleView = resultSearchController?.searchBar
+        navigationItem.titleView = searchBar
+
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
-        
+
         dojoSearchTable.mapView = mapView
         dojoSearchTable.handleMapSearchDelegate = self
-        
+
         backToHomeButton.isHidden = true
         loadingLabel.isHidden = true
-        
+
     }
 
     var resultSearchController: UISearchController? = nil
-    
-    
+
     @IBOutlet weak var blurEffect: UIVisualEffectView!
     @IBOutlet weak var backToHomeButton: UIButton!
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
-    func selectDojo()
-    {
+
+    func selectDojo() {
         if let selectedPin = selectedPin {
             let mapItem = MKMapItem(placemark: selectedPin)
             var image: UIImage? = nil
-            
+
             // save a picture of the map to put on the dojobutton on the front page
             let snapShotOptions = MKMapSnapshotOptions()
             snapShotOptions.size = CGSize(width: mapView.bounds.size.width, height: Constants.mapImageHeight)
             snapShotOptions.camera = mapView.camera
             snapShotOptions.scale = UIScreen.main.scale
             snapShotOptions.mapType = .standard
-            
+
             loadingLabel.isHidden = false
             loadingIndicator.startAnimating()
             let snapShotter = MKMapSnapshotter(options: snapShotOptions)
             UIApplication.shared.beginIgnoringInteractionEvents()
-            snapShotter.start(){ snapshot, error in
-                
+            snapShotter.start() { snapshot, error in
+
                 guard snapshot != nil else {
                     debugPrint(error as Any)
                     UIApplication.shared.endIgnoringInteractionEvents()
                     return
                 }
                 image = snapshot?.image != nil ? snapshot!.image : nil
-            
+
                 DatabaseManager.save(dojo: mapItem, mapImage: image)
-                
+
                 self.loadingIndicator.stopAnimating()
                 self.loadingLabel.isHidden = true
                 self.backToHomeButton.isHidden = false
                 UIApplication.shared.endIgnoringInteractionEvents()
             }
-            
+
             blurEffect.isHidden = false
         }
     }
@@ -101,7 +103,7 @@ extension NewDojoViewController: CLLocationManagerDelegate {
             locationManager.requestLocation()
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let span = MKCoordinateSpanMake(Constants.zoomLevelLatitude, Constants.zoomLevelLongitude)
@@ -109,7 +111,7 @@ extension NewDojoViewController: CLLocationManagerDelegate {
             mapView.setRegion(region, animated: true)
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error)")
     }
@@ -119,7 +121,7 @@ extension NewDojoViewController: HandleMapSearch {
     func dropPinZoomIn(_ placemark: MKPlacemark) {
         // cache the pin
         selectedPin = placemark
-        
+
         //clear existing pins
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
@@ -145,7 +147,7 @@ extension NewDojoViewController : MKMapViewDelegate {
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView?.pinTintColor = UIColor.orange
         pinView?.canShowCallout = true
-        
+
         let button = UIButton.init(type: .contactAdd)
         button.addTarget(self, action: #selector(selectDojo), for: .touchUpInside)
         pinView?.rightCalloutAccessoryView = button

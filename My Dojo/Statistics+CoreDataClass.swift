@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class Statistics: NSManagedObject {
     class func getStatistics() -> Statistics? {
         let context = DatabaseManager.context
@@ -18,14 +17,14 @@ public class Statistics: NSManagedObject {
         
         if let statistics = (try? context.fetch(request))?.first as? Statistics {
             return statistics
-        } else {
-            let statistics = NSEntityDescription.insertNewObject(forEntityName: "Statistics", into: context) as? Statistics
+        } else if let statistics = NSEntityDescription.insertNewObject(forEntityName: "Statistics", into: context) as? Statistics {
             
-            statistics?.currentTrainingStreak = 0
-            statistics?.numberOfTrainings = 0
-            statistics?.numberOfTrainedTechniques = 0
+            statistics.currentTrainingStreak = 0
+            statistics.numberOfTrainings = 0
+            statistics.numberOfTrainedTechniques = 0
             
             return statistics
         }
+        return nil
     }
 }

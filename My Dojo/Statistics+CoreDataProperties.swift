@@ -9,11 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension Statistics {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Statistics> {
-        return NSFetchRequest<Statistics>(entityName: "Statistics");
+        return NSFetchRequest<Statistics>(entityName: "Statistics")
     }
 
     @NSManaged public var currentTrainingStreak: Int64

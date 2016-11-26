@@ -12,7 +12,7 @@ import CoreData
 extension Chapter {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<Chapter>(entityName: "Chapter") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "Chapter")
     }
 
     @NSManaged public var japaneseName: String?

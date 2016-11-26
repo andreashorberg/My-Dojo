@@ -9,11 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension Technique {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<Technique>(entityName: "Technique") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "Technique")
     }
 
     @NSManaged public var isAlonePractice: Bool

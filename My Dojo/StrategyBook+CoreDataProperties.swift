@@ -12,7 +12,7 @@ import CoreData
 extension StrategyBook {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<StrategyBook>(entityName: "StrategyBook") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "StrategyBook")
     }
 
     @NSManaged public var japaneseName: String?

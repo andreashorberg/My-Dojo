@@ -9,21 +9,18 @@
 import Foundation
 import CoreData
 
-
 open class StrategyBook: NSManagedObject {
 
-    class func strategyBook(withName name: String, andId id: String, inManagedObjectContext context: NSManagedObjectContext) -> StrategyBook?
-    {
-        let request = NSFetchRequest<StrategyBook>(entityName: "StrategyBook")
-        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
+    class func strategyBook(withName name: String, andId unique: String, inManagedObjectContext context: NSManagedObjectContext) -> StrategyBook? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StrategyBook")
+        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, unique)
         
-        if let strategyBook = (try? context.fetch(request as! NSFetchRequest<NSFetchRequestResult>))?.first as? StrategyBook {
-//            print("Strategybook \(name) found in database")
+        if let strategyBook = (try? context.fetch(request))?.first as? StrategyBook {
             return strategyBook
         } else if let strategyBook = NSEntityDescription.insertNewObject(forEntityName: "StrategyBook", into: context) as? StrategyBook {
             strategyBook.japaneseName = name
-            strategyBook.unique = id
-//            print("\(id) Strategybook \(name) inserted in database")
+            strategyBook.unique = unique
+
             return strategyBook
         }
         

@@ -11,23 +11,23 @@ import CoreData
 import MapKit
 
 open class Dojo: NSManagedObject {
-    
+
     fileprivate var placemark: MKPlacemark? {
         get {
-            return MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: addressDictionary as! [String : Any]?)
+            guard let dictionary = addressDictionary as? [String : Any] else { fatalError("No addressdictionary") }
+            return MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: dictionary)
         }
     }
-    
+
     var mapItem: MKMapItem? {
         get {
             return placemark != nil ? MKMapItem(placemark: placemark!) : nil
         }
     }
-    
-    class func dojo(with mapItem: MKMapItem?, and mapImage: UIImage?, inManagedObjectContext context: NSManagedObjectContext) -> Dojo?
-    {
+
+    class func dojo(with mapItem: MKMapItem?, and mapImage: UIImage?, inManagedObjectContext context: NSManagedObjectContext) -> Dojo? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Dojo")
-        
+
         // this is when we have a dojo in the database already
         if let dojo = (try? context.fetch(request))?.first as? Dojo {
             debugPrint("Found dojo in database")
@@ -45,12 +45,12 @@ open class Dojo: NSManagedObject {
             debugPrint("Dojo inserted in database")
             return dojo
         }
-        
+
         return nil
     }
-    
+
     open func remove() {
-        
+
         DatabaseManager.context.delete(self)
         do {
             try DatabaseManager.context.save()
@@ -58,14 +58,13 @@ open class Dojo: NSManagedObject {
             debugPrint(error)
             return
         }
-        
+
         let notification = Notification(name: .dojoRemovedNotification, object: self, userInfo: nil)
         NotificationCenter.default.post(notification)
     }
-    
+
 }
 
-extension Notification.Name
-{
+extension Notification.Name {
     static let dojoRemovedNotification = Notification.Name("dojoRemoved")
 }

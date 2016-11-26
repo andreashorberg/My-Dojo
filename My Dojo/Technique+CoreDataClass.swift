@@ -9,28 +9,42 @@
 import Foundation
 import CoreData
 
-
 open class Technique: NSManagedObject {
-    class func techniqueWith(name: String, andId id: String, for chapter: Chapter, inManagedObjectContext context: NSManagedObjectContext) -> Technique?
-    {
-        
-        if let technique = getTechnique(with: name, id: id, context: context) {
+    class func techniqueWith(name: String,
+                             andId unique: String,
+                             for chapter: Chapter,
+                             inManagedObjectContext context: NSManagedObjectContext) -> Technique? {
+
+        if let technique = getTechnique(with: name, unique: unique, context: context) {
             return technique
-        } else if let technique = techniqueWith(name: name, andId: id, for: chapter, isWarmup: false, isAlonePractice: false, isTogetherPractice: false, inManagedObjectContext: context) {
-//            debugPrint("\(id) Technique \(name) from chapter \(technique.chapter?.japaneseName!) and strategybook \(technique.chapter?.strategyBook?.japaneseName) inserted in database")
+        } else if let technique = techniqueWith(name: name,
+                                                andId: unique,
+                                                for: chapter,
+                                                isWarmup: false,
+                                                isAlonePractice: false,
+                                                isTogetherPractice: false,
+                                                inManagedObjectContext: context) {
             return technique
         }
-        
+
         return nil
     }
     
-    class func techniqueWith(name: String, andId id: String, for chapter: Chapter, isWarmup: Bool, isAlonePractice: Bool, isTogetherPractice: Bool, inManagedObjectContext context: NSManagedObjectContext) -> Technique? {
-        
-        if let technique = getTechnique(with: name, id: id, context: context) {
+    // this is an initializer that need to take many arguments
+    // swiftlint:disable:next function_parameter_count
+    class func techniqueWith(name: String,
+                             andId unique: String,
+                             for chapter: Chapter,
+                             isWarmup: Bool,
+                             isAlonePractice: Bool,
+                             isTogetherPractice: Bool,
+                             inManagedObjectContext context: NSManagedObjectContext) -> Technique? {
+
+        if let technique = getTechnique(with: name, unique: unique, context: context) {
             return technique
         } else if let technique = NSEntityDescription.insertNewObject(forEntityName: "Technique", into: context) as? Technique {
             technique.japaneseName = name
-            technique.unique = id
+            technique.unique = unique
             technique.chapter = chapter
             technique.isWarmup = isWarmup
             technique.isAlonePractice = isAlonePractice
@@ -39,18 +53,17 @@ open class Technique: NSManagedObject {
         }
         return nil
     }
-    
-    fileprivate class func getTechnique(with name: String, id: String, context: NSManagedObjectContext) -> Technique? {
+
+    fileprivate class func getTechnique(with name: String, unique: String, context: NSManagedObjectContext) -> Technique? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Technique")
-        
-        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, id)
+
+        request.predicate = NSPredicate(format: "japaneseName = %@ and unique = %@", name, unique)
         if let technique = (try? context.fetch(request))?.first as? Technique {
-            //debugPrint("Technique \(name) from chapter \(technique.chapter?.japaneseName) and strategybook \(technique.chapter?.strategyBook?.japaneseName) found in database")
             return technique
         }
         return nil
     }
-    
+
     // MARK: Selection
     // Used for keeping track of selection in Techniques Table View
     open var isSelected: Bool = false

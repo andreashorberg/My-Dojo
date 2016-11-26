@@ -9,11 +9,10 @@
 import Foundation
 import CoreData
 
-
 extension Training {
 
     @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<Training>(entityName: "Training") as! NSFetchRequest<NSFetchRequestResult>;
+        return NSFetchRequest<NSFetchRequestResult>(entityName: "Training")
     }
 
     @NSManaged public var date: Date?
